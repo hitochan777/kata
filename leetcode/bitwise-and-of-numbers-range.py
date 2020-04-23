@@ -9,6 +9,8 @@ class Solution:
 
         if n_0_index == -1:
             return 
+        else:
+            min(n_0_index, m_0_index)
 
         return n & m & (1 << (len(bin(n)[2:]) - 1))
 
