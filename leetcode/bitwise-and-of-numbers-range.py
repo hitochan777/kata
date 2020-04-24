@@ -5,14 +5,16 @@ class Solution:
 
         mb, nb = bin(m)[2:], bin(n)[2:]
         mb = mb.zfill(len(nb))
-        m_0_index, n_0_index = mb.find("0"), nb.find("0")
 
-        if n_0_index == -1:
-            return 
-        else:
-            min(n_0_index, m_0_index)
+        ptr = -1
+        for i in range(len(mb)):
+            if mb[i] != nb[i]:
+                break
 
-        return n & m & (1 << (len(bin(n)[2:]) - 1))
+            ptr = i
+
+        bit_seq = nb[:ptr+1] + "0" * (len(mb) - ptr - 1)
+        return int(bit_seq, 2)
 
 if __name__ == "__main__":
     solver = Solution()
@@ -26,3 +28,5 @@ if __name__ == "__main__":
     assert result == 100, result
     result = solver.rangeBitwiseAnd(6,7)
     assert result == 6, result
+    result = solver.rangeBitwiseAnd(10,11)
+    assert result == 10, result
