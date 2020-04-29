@@ -72,6 +72,7 @@ class FirstUnique:
     def add(self, value: int) -> None:
         if value in self.exists:
             self.dll.remove(self.exists[value])
+            self.exists[value] = None
             return
 
         new_node = self.dll.add(value)
@@ -106,12 +107,4 @@ if __name__ == "__main__":
     firstUnique = FirstUnique([1, 1, 7, 7, 6])
     firstUnique.add(6)
     firstUnique.add(2)
-    assert firstUnique.showFirstUnique() == 2
-
-    firstUnique = FirstUnique([])
-    assert firstUnique.showFirstUnique() == -1
-
-    firstUnique = FirstUnique([1, 2, 3])
-    firstUnique.add(1)
-    firstUnique.add(3)
     assert firstUnique.showFirstUnique() == 2
