@@ -8,6 +8,10 @@ class Solution:
         colors = {}
         
         def colorable(node, c) -> bool:
-            pass
+            if node in colors:
+                return colors[node] == c
+            
+            colors[node] = c
+            return all(colorable(neighbor, c ^ 1) for neighbor in m[node])
         
-        return all(colorable(node, 0) for n in range(1, N+1) if n not in colors)
+        return all(colorable(n, 0) for n in range(1, N+1) if n not in colors)
