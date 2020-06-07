@@ -2,23 +2,21 @@ from typing import List
 
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        if amount == 0:
-            return 1
+        dp = [ [0] * (len(coins) + 1) for _ in range(amount + 1)]
+        for i in range(len(coins) + 1):
+            dp[0][i] = 1
 
-        if len(coins) == 0 or amount < 0:
-            return 0
-    
-        coin = coins[0]
-        cnt = 0
-        comb = 0
-        print(f"{amount=} {coins=}")
-        while coin * cnt <= amount:
-            comb += self.change(amount - coin * cnt, coins[1:])
-            cnt += 1
-            
-        return comb
+        for i in range(1, amount + 1):
+            dp[i][0] = 0
+
+        for i in range(1, amount + 1):
+            for j in range(1, len(coins) + 1):
+                val = coins[j-1]
+                dp[i][j] = (dp[i - val][j] if i >= val else 0) + dp[i][j-1]
+
+        return dp[-1][-1]
 
 if __name__ == "__main__":
     solver = Solution()
-    print(solver.change(500, [3,5,7,8,9,10,11]))
+    print(solver.change(5, [1,2, 5]))
 
