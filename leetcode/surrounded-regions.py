@@ -11,7 +11,7 @@ class Solution:
             if x < 0 or y < 0 or x >= len(board) or y >= len(board[0]):
                 return
 
-            if visited[f"{x},{y}"]:
+            if visited[f"{x},{y}"] or board[x][y] == "X":
                 return
             
             visited[f"{x},{y}"] = True
@@ -19,20 +19,13 @@ class Solution:
                 board[x][y] = "#"
             
             for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                dfs(x + dx, y + dy)
+                _dfs(x + dx, y + dy)
                 
         def dfs(x, y) -> None:
-            print(f"{x=} {y=}")
             if board[x][y] != "O":
                 return
             
             _dfs(x, y)
-        
-        """
-        OOO
-        OOO
-        OOO
-        """
         
         
         for i in range(len(board)):
@@ -42,9 +35,8 @@ class Solution:
         for i in range(1,len(board[0])-1):
             dfs(0, i)
             dfs(len(board)-1, i)
-            
+        
         print(board)
-            
         for i in range(len(board)):
             for j in range(len(board[0])):
                 if board[i][j] == "#":
