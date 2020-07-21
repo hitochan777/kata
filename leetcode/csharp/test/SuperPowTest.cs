@@ -1,15 +1,20 @@
+using NUnit.Framework;
+
 namespace SuperPow
 {
-    using Xunit;
-
-    public class SuperPowTest 
+    public class Tests
     {
-        [Fact]
+        [SetUp]
+        public void Setup()
+        {
+        }
+
+        [Test]
         public void Test1()
         {
-            var solver = new Solution();
-            Assert.Equal(8, solver.SuperPow(2, new []{3}));
-            Assert.Equal(1024, solver.SuperPow(2, new []{1,0}));
+            var solver = new Solution(); 
+            Assert.AreEqual(8, solver.SuperPow(2, new []{3}));
+            Assert.AreEqual(1024, solver.SuperPow(2, new []{1,0}));
         }
     }
 }
