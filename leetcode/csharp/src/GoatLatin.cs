@@ -12,11 +12,15 @@ namespace src
 				(word, i) =>
 				{
 					var sb = new StringBuilder();
-					char c = word[0];
-					if (!(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'))
+					char c = word.ToLower()[0];
+					if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+					{
+						sb.Append(word);
+					}
+					else
 					{
 						sb.Append(word.Substring(1));
-						sb.Append(c);
+						sb.Append(word[0]);
 					}
 
 					sb.Append("ma");
