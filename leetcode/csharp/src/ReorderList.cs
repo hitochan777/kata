@@ -43,10 +43,10 @@ namespace src
 			}
 
 			ListNode slow = head, fast = head.next;
-			while (fast != null)
+			while (fast?.next != null)
 			{
 				slow = slow.next;
-				fast = fast.next;
+				fast = fast.next.next;
 			}
 
 			ListNode secondHead = slow.next;
@@ -56,7 +56,7 @@ namespace src
 
 		private void mergedLists(ListNode first, ListNode second)
 		{
-			while (first != null)
+			while (first != null && second != null)
 			{
 				ListNode tmp1 = first.next;
 				ListNode tmp2 = second.next;
