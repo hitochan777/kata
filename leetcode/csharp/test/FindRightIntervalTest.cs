@@ -12,10 +12,11 @@ namespace test
 			var solver = new FindRightInterval();
 			Assert.AreEqual(0, solver.GetLowerBound(input, 0));
 			Assert.AreEqual(1, solver.GetLowerBound(input, 2));
-			Assert.AreEqual(2, solver.GetLowerBound(input, 3));
+			Assert.AreEqual(1, solver.GetLowerBound(input, 3));
 			Assert.AreEqual(2, solver.GetLowerBound(input, 4));
 			Assert.AreEqual(2, solver.GetLowerBound(input, 5));
-			Assert.AreEqual(-1, solver.GetLowerBound(input, 6));
+			Assert.AreEqual(2, solver.GetLowerBound(input, 6));
+			Assert.AreEqual(-1, solver.GetLowerBound(input, 7));
 		}
 
 		[Test]

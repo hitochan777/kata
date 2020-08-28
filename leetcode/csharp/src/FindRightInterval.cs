@@ -19,7 +19,15 @@ namespace src
 			}
 
 			int[] keys = map.Keys.ToArray();
-			return intervals.Select(interval => GetLowerBound(keys, interval[1])).ToArray();
+			return intervals.Select(interval =>
+			{
+				var lowerBound =  GetLowerBound(keys, interval[1]);
+				if (lowerBound >= 0)
+				{
+					return map[keys[lowerBound]];
+				}
+				return -1;
+			}).ToArray();
 		}
 
 		public int GetLowerBound(int[] array, int value)
@@ -34,8 +42,13 @@ namespace src
 				}
 				else
 				{
-					high = mid;
+					high = mid - 1;
 				}
+			}
+
+			if (low >= array.Length)
+			{
+				return -1;
 			}
 
 			return low;
