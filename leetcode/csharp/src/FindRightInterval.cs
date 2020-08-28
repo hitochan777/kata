@@ -14,18 +14,19 @@ namespace src
 				var interval = intervals[i];
 				if (!map.ContainsKey(interval[0]))
 				{
-					map.Add(interval[0], i + 1);
+					map.Add(interval[0], i);
 				}
 			}
 
 			int[] keys = map.Keys.ToArray();
 			return intervals.Select(interval =>
 			{
-				var lowerBound =  GetLowerBound(keys, interval[1]);
+				var lowerBound = GetLowerBound(keys, interval[1]);
 				if (lowerBound >= 0)
 				{
 					return map[keys[lowerBound]];
 				}
+
 				return -1;
 			}).ToArray();
 		}
@@ -36,7 +37,16 @@ namespace src
 			while (low <= high)
 			{
 				int mid = (low + high) >> 1;
-				if (array[mid] <= value)
+				if (array[mid] == value)
+				{
+					while (mid + 1 < array.Length && array[mid + 1] == value)
+					{
+						mid++;
+					}
+
+					return mid;
+				}
+				else if (array[mid] < value)
 				{
 					low = mid + 1;
 				}
