@@ -5,31 +5,41 @@ using src;
 
 namespace test
 {
-	public class PancakeSortTest
+	public static class ListExtension
 	{
-		private static bool IsSorted(int[] arr)
+		public static List<T> ReverseUntil<T>(this List<T> list, int count)
 		{
-			for (int i = 1; i < arr.Length; i++)
+			return list.Take(count).Reverse().Concat(list.TakeLast(list.Count - count)).ToList();
+		}
+
+		public static bool IsSorted(this List<int> list)
+		{
+			for (int i = 1; i < list.Count; i++)
 			{
-				if (arr[i - 1] > arr[i])
+				if (list[i - 1] > list[i])
 				{
 					return false;
 				}
 			}
+
 			return true;
 		}
+	}
 
+	public class PancakeSortTest
+	{
 		[Test]
 		public void Test1()
 		{
-			var input = new List<int>{3, 2, 4, 1};
+			var input = new List<int> {3, 2, 4, 1};
 			var solver = new PancakeSort();
-			var flips= solver.Solve(input.ToArray());
+			var flips = solver.Solve(input.ToArray());
 			foreach (int flip in flips)
 			{
-				input = input.Take(flip).Reverse().Concat(input.TakeLast(input.Count - flip)).ToList();
+				input = input.ReverseUntil(flip);
 			}
-			Assert.True(IsSorted(input.ToArray()));
+
+			Assert.True(input.IsSorted());
 		}
 	}
 }
