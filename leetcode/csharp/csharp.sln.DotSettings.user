@@ -1,0 +1,23 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=60e1f529_002D7990_002D4e6a_002Db4e1_002D584602ce90bd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MincostTicketsTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.MincostTicketsTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.PancakeSortTest.Test1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a324b273_002Df6c6_002D460b_002D880c_002D16fa5690bda1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.PancakeSortTest.Test1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ddaea8fe_002D90c9_002D47ad_002Dbcb0_002D7f39619a3c50/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MincostTicketsTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.MincostTicketsTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.FindRightIntervalTest.GetLowerBoundTest1&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.FindRightIntervalTest.Test1&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.PancakeSortTest.Test1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
