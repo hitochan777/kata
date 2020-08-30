@@ -67,8 +67,11 @@ namespace src
 			{
 				for (int i = 2; i * i <= num; i++)
 				{
-					disjointSet.Union(num, i);
-					disjointSet.Union(num, num / i);
+					if (num % i == 0)
+					{
+						disjointSet.Union(num, i);
+						disjointSet.Union(num, num / i);
+					}
 				}
 			}
 
