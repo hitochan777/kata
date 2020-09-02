@@ -19,5 +19,6 @@
     &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.FindRightIntervalTest.GetLowerBoundTest1&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.FindRightIntervalTest.Test1&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.PancakeSortTest.Test1&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::608FE4E2-03CA-46D2-ABB1-A6FF9BCAFA91::.NETCoreApp,Version=v3.1::test.ContainsDuplicate3Test&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
