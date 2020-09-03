@@ -27,7 +27,7 @@ namespace src
 					return true;
 				}
 
-				if (bucket.ContainsKey(bucketId - 1) && bucket[bucketId - 1] - nums[i] < width)
+				if (bucket.ContainsKey(bucketId - 1) && nums[i] - bucket[bucketId - 1] < width)
 				{
 					return true;
 				}
