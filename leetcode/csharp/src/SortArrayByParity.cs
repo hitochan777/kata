@@ -7,7 +7,7 @@ namespace src
 	{
 		public int Compare(Object x, Object y)
 		{
-			return (int) x % 2 - (int) y % 2;
+			return (int)x % 2 - (int)y % 2;
 		}
 	}
 

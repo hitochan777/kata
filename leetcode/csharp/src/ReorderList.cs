@@ -70,7 +70,7 @@ namespace src
 
 		public void ReorderList(ListNode head)
 		{
-			ListNode latterHead =  breakListInMiddle(head);
+			ListNode latterHead = breakListInMiddle(head);
 			ListNode reversedLatterHead = reverseList(latterHead);
 			mergedLists(head, reversedLatterHead);
 		}

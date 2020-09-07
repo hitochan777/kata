@@ -92,7 +92,7 @@ namespace src
 
 		public TreeNode DeleteNode(TreeNode root, int key)
 		{
-			var dummyRoot = new TreeNode {left = root};
+			var dummyRoot = new TreeNode { left = root };
 			return DeleteNode(root, key, dummyRoot).left;
 		}
 	}

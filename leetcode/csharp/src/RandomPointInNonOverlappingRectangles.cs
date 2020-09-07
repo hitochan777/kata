@@ -37,7 +37,7 @@ namespace src
 			int index = SampleIndex(this.Areas);
 			var rand1 = random.NextDouble();
 			var rand2 = random.NextDouble();
-			return new[] {0};
+			return new[] { 0 };
 		}
 	}
 }

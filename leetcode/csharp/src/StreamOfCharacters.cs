@@ -11,7 +11,7 @@ namespace src
 
 			public static implicit operator Letter(char c)
 			{
-				return new Letter() {Index = Chars.IndexOf(c)};
+				return new Letter() { Index = Chars.IndexOf(c) };
 			}
 
 			public int Index;

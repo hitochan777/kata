@@ -18,9 +18,11 @@ namespace src
 			}
 		}
 
-		public int[] NumsSameConsecDiff(int N, int K) {
-			if (N == 1) {
-				return new int[]{0,1,2,3,4,5,6,7,8,9};
+		public int[] NumsSameConsecDiff(int N, int K)
+		{
+			if (N == 1)
+			{
+				return new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 			}
 
 			var nums = new List<int>();

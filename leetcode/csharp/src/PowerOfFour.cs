@@ -11,7 +11,7 @@ namespace IsPowerOfFour
 				return false;
 			}
 
-			int pow = (int) (Math.Log(num) / Math.Log(4));
+			int pow = (int)(Math.Log(num) / Math.Log(4));
 			return Math.Pow(4, pow) == num;
 		}
 	}

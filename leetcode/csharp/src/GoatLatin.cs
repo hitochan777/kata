@@ -8,7 +8,7 @@ namespace src
 	{
 		public string ToGoatLatin(string s)
 		{
-			return string.Join(' ', s.Split(new char[] {' '}).Select(
+			return string.Join(' ', s.Split(new char[] { ' ' }).Select(
 				(word, i) =>
 				{
 					var sb = new StringBuilder();

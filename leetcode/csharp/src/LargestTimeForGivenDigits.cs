@@ -15,7 +15,7 @@ namespace src
 
 			if (list.Length == 1)
 			{
-				return new List<List<int>> {list.ToList()};
+				return new List<List<int>> { list.ToList() };
 			}
 
 			var permutations = new List<List<int>> { };
@@ -24,7 +24,7 @@ namespace src
 			{
 				for (int i = 0; i <= subPerm.Count; i++)
 				{
-					var latter = new List<int> {list[0]};
+					var latter = new List<int> { list[0] };
 					latter.AddRange(subPerm.TakeLast(subPerm.Count - i));
 					var newPerm = subPerm.Take(i).Concat(latter).ToList();
 					permutations.Add(newPerm);

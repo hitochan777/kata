@@ -6,7 +6,7 @@ namespace src
 	{
 		public int Solve(int n)
 		{
-			return ((int) Math.Sqrt(1L + 8L * (long) n) - 1) / 2;
+			return ((int)Math.Sqrt(1L + 8L * (long)n) - 1) / 2;
 		}
 	}
 }

@@ -13,16 +13,16 @@ namespace DetectCapitalUse
 		}
 	}
 	public class Program
-    {
-    	public static void Main()
-    	{
-    		var solver = new Solution();
-    		Console.WriteLine(solver.DetectCapitalUse("USA"));
-    		Console.WriteLine(solver.DetectCapitalUse("Word"));
-    		Console.WriteLine(solver.DetectCapitalUse("word"));
-    		Console.WriteLine(solver.DetectCapitalUse("fLAG"));
-    	}
-    }
+	{
+		public static void Main()
+		{
+			var solver = new Solution();
+			Console.WriteLine(solver.DetectCapitalUse("USA"));
+			Console.WriteLine(solver.DetectCapitalUse("Word"));
+			Console.WriteLine(solver.DetectCapitalUse("word"));
+			Console.WriteLine(solver.DetectCapitalUse("fLAG"));
+		}
+	}
 }
 
 

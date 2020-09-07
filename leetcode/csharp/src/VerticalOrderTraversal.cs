@@ -7,7 +7,7 @@ namespace VerticalTraversal
 	{
 		public readonly int val;
 		public readonly TreeNode left;
-		public readonly  TreeNode right;
+		public readonly TreeNode right;
 
 		public TreeNode(int val, TreeNode left, TreeNode right)
 		{
