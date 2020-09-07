@@ -1,5 +1,4 @@
-using System;
-using Sysmte.Collection.Generics;
+using System.Collections.Generic;
 
 namespace src
 {
@@ -26,7 +25,7 @@ namespace src
 				}
 				if (invMap.ContainsKey(words[i]))
 				{
-					if (invMap[words[i]] != map[ch])
+					if (invMap[words[i]] != ch)
 					{
 						return false;
 					}
