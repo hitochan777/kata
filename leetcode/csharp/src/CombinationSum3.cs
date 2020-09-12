@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Transactions;
 
 namespace src
@@ -16,7 +17,7 @@ namespace src
 
 				if (sum == 0 && cur.Count == k)
 				{
-					result.Add(cur);
+					result.Add(new List<int>(cur));
 					return;
 				}
 
@@ -24,7 +25,7 @@ namespace src
 				{
 					cur.Add(i);
 					CombinationSum3(result, cur, k, i + 1, sum - i);
-					cur.Remove(cur.Count - 1);
+					cur.RemoveAt(cur.Count - 1);
 				}
 			}
 
