@@ -35,9 +35,9 @@ namespace test
 		[Test]
 		public void TestOddNumberOfElements()
 		{
-			var expected = new List<int> {1, 5, 2, 4, 3};
+			var expected = new List<int> { 1, 5, 2, 4, 3 };
 			var solver = new ListReorderer();
-			var linkedList = GenerateLinkedListFromValues(new List<int> {1, 2, 3, 4, 5});
+			var linkedList = GenerateLinkedListFromValues(new List<int> { 1, 2, 3, 4, 5 });
 			solver.ReorderList(linkedList);
 			var actual = ConvertToList(linkedList);
 			Assert.AreEqual(actual, expected);
@@ -46,9 +46,9 @@ namespace test
 		[Test]
 		public void TestEvenNumberOfElements()
 		{
-			var expected = new List<int> {1, 4, 2, 3};
+			var expected = new List<int> { 1, 4, 2, 3 };
 			var solver = new ListReorderer();
-			var linkedList = GenerateLinkedListFromValues(new List<int> {1, 2, 3, 4});
+			var linkedList = GenerateLinkedListFromValues(new List<int> { 1, 2, 3, 4 });
 			solver.ReorderList(linkedList);
 			var actual = ConvertToList(linkedList);
 			Assert.AreEqual(actual, expected);
@@ -68,9 +68,9 @@ namespace test
 		[Test]
 		public void TestOneElement()
 		{
-			var expected = new List<int> {1};
+			var expected = new List<int> { 1 };
 			var solver = new ListReorderer();
-			var linkedList = GenerateLinkedListFromValues(new List<int> {1});
+			var linkedList = GenerateLinkedListFromValues(new List<int> { 1 });
 			solver.ReorderList(linkedList);
 			var actual = ConvertToList(linkedList);
 			Assert.AreEqual(actual, expected);

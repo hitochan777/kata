@@ -15,7 +15,7 @@ namespace src
 
 			var leftList = PreorderTraversal(node.left);
 			var rightList = PreorderTraversal(node.right);
-			return leftList.Concat(new List<int> {node.val}).Concat(rightList).ToList();
+			return leftList.Concat(new List<int> { node.val }).Concat(rightList).ToList();
 		}
 
 		private IList<int> Merge(IList<int> list1, IList<int> list2)

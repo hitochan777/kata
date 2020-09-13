@@ -31,7 +31,7 @@ namespace test
 		[Test]
 		public void Test1()
 		{
-			var input = new List<int> {3, 2, 4, 1};
+			var input = new List<int> { 3, 2, 4, 1 };
 			var solver = new PancakeSort();
 			var flips = solver.Solve(input.ToArray());
 			foreach (int flip in flips)
@@ -45,7 +45,7 @@ namespace test
 		[Test]
 		public void Test2()
 		{
-			var input = new List<int> {1, 9, 8, 21, 2, 3, 5, 12, 3, 2};
+			var input = new List<int> { 1, 9, 8, 21, 2, 3, 5, 12, 3, 2 };
 			var solver = new PancakeSort();
 			var flips = solver.Solve(input.ToArray());
 			foreach (int flip in flips)

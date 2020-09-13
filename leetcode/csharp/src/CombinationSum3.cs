@@ -4,8 +4,9 @@ namespace src
 {
 	public class CombinationSum3
 	{
-		public class Solution {
-			private void CombinationSum3(IList<IList<int>> result,  IList<int> cur, int k, int start, int sum)
+		public class Solution
+		{
+			private void CombinationSum3(IList<IList<int>> result, IList<int> cur, int k, int start, int sum)
 			{
 				if (sum < 0)
 				{
@@ -33,6 +34,6 @@ namespace src
 				CombinationSum3(result, cur, k, 1, n);
 				return result;
 			}
-        }
+		}
 	}
 }
