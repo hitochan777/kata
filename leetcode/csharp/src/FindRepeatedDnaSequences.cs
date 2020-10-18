@@ -8,7 +8,7 @@ namespace src
 		public IList<string> Solve(string s)
 		{
 			var counts = new Dictionary<string, int>();
-			for (var i = 0; i < s.Length - 10; i++)
+			for (var i = 0; i < s.Length - 9; i++)
 			{
 				var str = s.Substring(i, 10);
 				if (!counts.ContainsKey(str))
@@ -17,8 +17,7 @@ namespace src
 				}
 				counts[str]++;
 			}
-
-			return counts.Where((str, cnt) => cnt > 1).Select(pair => pair.Key).ToList();
+			return counts.Where(item => item.Value > 1).Select(pair => pair.Key).ToList();
 		}
 	}
 }
