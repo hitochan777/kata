@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,6 +19,12 @@ namespace src
 				counts[str]++;
 			}
 			return counts.Where(item => item.Value > 1).Select(pair => pair.Key).ToList();
+		}
+
+		static void Main(string[] args)
+		{
+			var solver = new FindRepeatedDnaSequences();
+			Console.WriteLine(solver.Solve("AAAAAAAAAAAAAAAA"));
 		}
 	}
 }
