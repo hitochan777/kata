@@ -6,17 +6,23 @@ namespace src
 		public int MaxDistToClosest(int[] seats)
 		{
 			var maxDiff = 0;
-			var index = 0;
-			var seatedIndices = seats.Where(seat => seat == 1).Select((seat, i) => i).ToList();
-			for (int i = 1; i < seatedIndices.Count; i++)
+			var seatedIndices = seats.Select((seat, i) => new { seat, index = i }).Where(val => val.seat == 1).Select(val => val.index).ToArray();
+
+			maxDiff = seatedIndices.First();
+			var diff = seats.Length - 1 - seatedIndices.Last();
+			if (diff > maxDiff)
 			{
-				var diff = seatedIndices[i] - seatedIndices[i - 1];
+				maxDiff = diff;
+			}
+			for (int i = 1; i < seatedIndices.Length; i++)
+			{
+				diff = seatedIndices[i] - seatedIndices[i - 1];
 				if (diff > maxDiff)
 				{
-					index = diff / 2 + seatedIndices[i - 1];
+					maxDiff = diff / 2;
 				}
 			}
-			return index;
+			return maxDiff;
 		}
 	}
 }
