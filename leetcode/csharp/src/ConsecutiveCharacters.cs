@@ -1,6 +1,7 @@
 using System;
 
-namespace src {
+namespace src
+{
 	public class ConsecutiveCharacters
 	{
 		public int MaxPower(string s)
