@@ -2,9 +2,9 @@ using System;
 
 namespace src
 {
-	public class Solution
+	public class sumRootToLeaft
 	{
-		public int SumRootToLeaf(TreeNode node, string current)
+		public int Solve(TreeNode node, string current)
 		{
 			if (node == null)
 			{
@@ -15,11 +15,11 @@ namespace src
 			{
 				return Convert.ToInt32(binSeq, 2);
 			}
-			return SumRootToLeaf(node.left, binSeq) + SumRootToLeaf(node.right, binSeq);
+			return Solve(node.left, binSeq) + Solve(node.right, binSeq);
 		}
 		public int SumRootToLeaf(TreeNode root)
 		{
-			return SumRootToLeaf(root, "");
+			return Solve(root, "");
 		}
 	}
 }
