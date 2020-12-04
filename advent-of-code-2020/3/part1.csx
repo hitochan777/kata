@@ -10,7 +10,7 @@ while (true)
 }
 var count = 0;
 int x = 0, y = 0;
-while (y < lines.Count - 1) {
+while (y < lines.Count) {
     Console.WriteLine($"{x} {y}");
     if (lines[y][x] == '#') {
         count++;
