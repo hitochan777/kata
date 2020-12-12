@@ -13,16 +13,16 @@ for (var i = 0; i < lines.Count; i++) {
     var min = lines[i];
     var max = lines[i];
     for (var j = i + 1; j < lines.Count; j++) {
-        Console.WriteLine($"{lines[i]} {lines[j]}");
+        // Console.WriteLine($"{lines[i]} {lines[j]}");
         if (sum > TARGET) {
             break;
         }
-        if (sum == TARGET) {
-            Console.WriteLine($"{min} {max}");
+        if (i + 1 < j && sum == TARGET) {
+            Console.WriteLine($"{min} + {max} = {min + max}");
             return;
         }
-        sum += lines[i];
-        min = Math.Min(min, lines[i]);
-        max = Math.Max(max, lines[i]);
+        sum += lines[j];
+        min = Math.Min(min, lines[j]);
+        max = Math.Max(max, lines[j]);
     }
 }
