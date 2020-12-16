@@ -1,5 +1,5 @@
-var ship = (x: 0L, y: 0L);
-var wp = (x: 10L, y: 1L);
+var ship = (x: 0f, y: 0f);
+var wp = (x: 10f, y: 1f);
 
 while (true)
 {
@@ -29,14 +29,14 @@ while (true)
 			var sign = cmd == 'L' ? 1.0 : -1.0;
 			var cos = Math.Cos(sign * value * Math.PI / 180);
 			var sin = Math.Sin(sign * value * Math.PI / 180);
-			wp = ((long)(wp.x * cos - wp.y * sin), (long)(wp.x * sin + wp.y * cos));
+			wp = ((float)(wp.x * cos - wp.y * sin), (float)(wp.x * sin + wp.y * cos));
 			break;
 		case 'F':
 			ship.x += wp.x * value;
 			ship.y += wp.y * value;
 			break;
 	}
-	Console.WriteLine($"waypoint = ({wp.x}, {wp.y}), ship = ({ship.x}, {ship.y})");
+	Console.WriteLine($"{line} waypoint = ({wp.x}, {wp.y}), ship = ({ship.x}, {ship.y})");
 }
 
-Console.WriteLine(Math.Abs(ship.x) + Math.Abs(ship.y));
+Console.WriteLine($"{Math.Abs(ship.x)} + {Math.Abs(ship.y)} = {Math.Abs(ship.x) + Math.Abs(ship.y)}");
