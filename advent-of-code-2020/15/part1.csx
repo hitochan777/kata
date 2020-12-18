@@ -5,7 +5,7 @@ for (var i = 0; i < spokenNums.Count - 1; i++) {
     lastIndices[spokenNums[i]] = i + 1;
 }
 var lastSpoken = spokenNums[^1];
-while (spokenNums.Count < 2000 ) {
+while (spokenNums.Count < 2020 ) {
     if (!lastIndices.ContainsKey(lastSpoken)) {
         spokenNums.Add(0);
     } else {
