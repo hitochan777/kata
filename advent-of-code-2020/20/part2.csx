@@ -129,13 +129,13 @@ public class Tile
 	public int FindPattern(List<string> pattern)
 	{
 		var count = 0;
+		var re = new Regex(pattern[0]);
 		for (var i = 0; i <= Rows.Length - pattern.Count; i++)
 		{
-			var matches = Regex.Matches(new string(Rows[i]), pattern[0]);
-			foreach (Match match in matches)
+			var match = re.Match(new string(Rows[i]));
+			while (match.Success)
 			{
 				var tempCount = match.Value.Count(c => c == '#');
-
 				var valid = true;
 				for (var p = 1; p < pattern.Count; p++)
 				{
@@ -145,19 +145,12 @@ public class Tile
 						valid = false;
 						break;
 					}
-					tempCount += new string(Rows[i + p]).Substring(match.Index, pattern[p].Length).Count(c => c == '#');
 				}
 				if (valid)
 				{
-					Console.WriteLine(i);
-					Console.WriteLine(match.Value);
-					for (var p = 1; p < pattern.Count; p++)
-					{
-						Console.WriteLine(new string(Rows[i + p]).Substring(match.Index, pattern[p].Length));
-					}
-					Console.WriteLine("");
-					count += tempCount;
+					count++;
 				}
+				match = re.Match(new string(Rows[i]), match.Index + 1);
 			}
 		}
 		return count;
@@ -244,7 +237,7 @@ while (tiles.Count > 0)
 		if (matchingTile != null)
 		{
 			restored[^1].Add(matchingTile);
-			if (restored[^1].Count == 3)
+			if (restored[^1].Count == 12)
 			{
 				restored.Add(new List<Tile>());
 			}
@@ -284,10 +277,9 @@ var pattern = new List<string> {
 // 	Console.WriteLine(image);
 // }
 
-Console.WriteLine(transformedRestoredImage);
 var restoredImage = transformedRestoredImage.EnumTransformations().Where(transformation => transformation.FindPattern(pattern) > 0).FirstOrDefault();
 var count = restoredImage.FindPattern(pattern);
 
 Console.WriteLine(restoredImage);
 Console.WriteLine(count);
-Console.WriteLine(restoredImage.ToString().Count(c => c == '#') - count);
+Console.WriteLine(restoredImage.ToString().Count(c => c == '#') - count * pattern.Select(p => p.Count(c=>c=='#')).Sum());
