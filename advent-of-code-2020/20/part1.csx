@@ -62,9 +62,14 @@ while (true)
 		break;
 	}
 	var top = maybeTile.GetEdge(Side.Top);
+	var reversedTop = new string(top.Reverse().ToArray());
 	var right = maybeTile.GetEdge(Side.Right);
+	var reversedRight = new string(right.Reverse().ToArray());
 	var bottom = maybeTile.GetEdge(Side.Bottom);
+	var reversedBottom = new string(bottom.Reverse().ToArray());
 	var left = maybeTile.GetEdge(Side.Left);
+	var reversedLeft = new string(left.Reverse().ToArray());
+
 	if (!edgeCount.ContainsKey(top))
 	{
 		edgeCount[top] = 0;
@@ -81,15 +86,35 @@ while (true)
 	{
 		edgeCount[left] = 0;
 	}
+	if (!edgeCount.ContainsKey(reversedTop))
+	{
+		edgeCount[reversedTop] = 0;
+	}
+	if (!edgeCount.ContainsKey(reversedRight))
+	{
+		edgeCount[reversedRight] = 0;
+	}
+	if (!edgeCount.ContainsKey(reversedBottom))
+	{
+		edgeCount[reversedBottom] = 0;
+	}
+	if (!edgeCount.ContainsKey(reversedLeft))
+	{
+		edgeCount[reversedLeft] = 0;
+	}
 	edgeCount[top]++;
 	edgeCount[right]++;
 	edgeCount[bottom]++;
 	edgeCount[left]++;
+	edgeCount[reversedTop]++;
+	edgeCount[reversedRight]++;
+	edgeCount[reversedBottom]++;
+	edgeCount[reversedLeft]++;
 	tiles.Add(maybeTile);
-    Console.WriteLine(maybeTile);
+	Console.WriteLine(maybeTile);
 }
 
-var sum = 0;
+var sum = 1L;
 foreach (var tile in tiles)
 {
 	var top = edgeCount[tile.GetEdge(Side.Top)];
@@ -98,22 +123,22 @@ foreach (var tile in tiles)
 	var left = edgeCount[tile.GetEdge(Side.Left)];
 	if (top == 1 && right == 1)
 	{
-		sum += tile.Id;
+		sum *= tile.Id;
 		Console.WriteLine(tile.Id);
 	}
 	if (right == 1 && bottom == 1)
 	{
-		sum += tile.Id;
+		sum *= tile.Id;
 		Console.WriteLine(tile.Id);
 	}
 	if (bottom == 1 && left == 1)
 	{
-		sum += tile.Id;
+		sum *= tile.Id;
 		Console.WriteLine(tile.Id);
 	}
 	if (left == 1 && top == 1)
 	{
-		sum += tile.Id;
+		sum *= tile.Id;
 		Console.WriteLine(tile.Id);
 	}
 }
