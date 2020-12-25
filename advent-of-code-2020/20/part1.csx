@@ -1,3 +1,20 @@
+public class DefaultDictionary<TKey, TValue> : Dictionary<TKey, TValue>
+{
+	public new TValue this[TKey key]
+	{
+		get
+		{
+			TValue val;
+			if (!TryGetValue(key, out val))
+			{
+				return default(TValue);
+			}
+			return val;
+		}
+		set { base[key] = value; }
+	}
+}
+
 public enum Side
 {
 	Top,
@@ -53,7 +70,7 @@ public class Tile
 }
 
 var tiles = new List<Tile>();
-var edgeCount = new Dictionary<string, int>();
+var edgeCount = new DefaultDictionary<string, int>();
 while (true)
 {
 	var maybeTile = Tile.ReadTile();
@@ -70,38 +87,6 @@ while (true)
 	var left = maybeTile.GetEdge(Side.Left);
 	var reversedLeft = new string(left.Reverse().ToArray());
 
-	if (!edgeCount.ContainsKey(top))
-	{
-		edgeCount[top] = 0;
-	}
-	if (!edgeCount.ContainsKey(right))
-	{
-		edgeCount[right] = 0;
-	}
-	if (!edgeCount.ContainsKey(bottom))
-	{
-		edgeCount[bottom] = 0;
-	}
-	if (!edgeCount.ContainsKey(left))
-	{
-		edgeCount[left] = 0;
-	}
-	if (!edgeCount.ContainsKey(reversedTop))
-	{
-		edgeCount[reversedTop] = 0;
-	}
-	if (!edgeCount.ContainsKey(reversedRight))
-	{
-		edgeCount[reversedRight] = 0;
-	}
-	if (!edgeCount.ContainsKey(reversedBottom))
-	{
-		edgeCount[reversedBottom] = 0;
-	}
-	if (!edgeCount.ContainsKey(reversedLeft))
-	{
-		edgeCount[reversedLeft] = 0;
-	}
 	edgeCount[top]++;
 	edgeCount[right]++;
 	edgeCount[bottom]++;
@@ -124,22 +109,18 @@ foreach (var tile in tiles)
 	if (top == 1 && right == 1)
 	{
 		sum *= tile.Id;
-		Console.WriteLine(tile.Id);
 	}
 	if (right == 1 && bottom == 1)
 	{
 		sum *= tile.Id;
-		Console.WriteLine(tile.Id);
 	}
 	if (bottom == 1 && left == 1)
 	{
 		sum *= tile.Id;
-		Console.WriteLine(tile.Id);
 	}
 	if (left == 1 && top == 1)
 	{
 		sum *= tile.Id;
-		Console.WriteLine(tile.Id);
 	}
 }
 
