@@ -36,10 +36,6 @@ public class Game
 	{
 		while (Deck1.Count > 0 && Deck2.Count > 0)
 		{
-			// Console.WriteLine($"Player 1's deck: {string.Join(',', Deck1)}");
-			// Console.WriteLine($"Player 2's deck: {string.Join(',', Deck2)}");
-			// Console.WriteLine();
-
 			if (PreviousDecks.Contains((string.Join(',', Deck1), string.Join(',', Deck2))))
 			{
 				return 1;
