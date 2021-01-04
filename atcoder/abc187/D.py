@@ -1,6 +1,5 @@
 from collections import defaultdict
 from typing import List
-import math
 
 def read_int() -> List[int]:
     return list(map(int, input().split(" ")))
