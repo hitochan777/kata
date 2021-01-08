@@ -4,7 +4,7 @@ from functools import reduce
 
 def get_min_stamps(n: int, blue_indices: List[int]):
     if len(blue_indices) == 0:
-        return 0
+        return 1
 
     blue_indices.sort()
     if blue_indices[0] != 1:
