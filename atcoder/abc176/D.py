@@ -1,7 +1,7 @@
-from collections import defaultdict, deque
+from collections import deque
 
-dx = [0, 0, 1, -1]
-dy = [1, -1, 0, 0]
+walks = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+warps = [(i, j) for i in range(-2, 3) for j in range(-2, 3) if [i, j] not in [(0, 0)] + walks]
 
 h, w = list(map(int, input().split()))
 ch, cw = list(map(int, input().split()))
@@ -13,42 +13,28 @@ for _ in range(h):
     rows.append(input())
 
 q = deque()
-visited = defaultdict(bool)
-mindist = defaultdict(lambda: 10**10)
-mindist((ch, cw)) = 0
-q.append(((ch, cw), 0))
-
+inf = 10 ** 10
+mindist = [[inf] * w for _ in range(h)]
+mindist[ch][cw] = 0
+q.append(((ch, cw)))
 while len(q) > 0:
-    pos, dist = q.popleft()
-    if visited[pos]:
-        continue
-
-    visited[pos] = True
+    pos = q.popleft()
     x, y = pos
-    for i in range(4):
-        nextPos = (x + dx[i], y + dy[i])
-        if nextPos[0] < 0 or nextPos[0] >= h or nextPos[1] < 0 or nextPos[1] >= w:
-            continue
+    for dx, dy in walks:
+        nx, ny = (x + dx, y + dy)
+        if 0 <= nx < h and 0 <= ny < w and rows[nx][ny] == ".":
+            if mindist[nx][ny] > mindist[x][y]:
+                mindist[nx][ny] = mindist[x][y]
+                q.appendleft((nx, ny))
 
-        if rows[nextPos[0]][nextPos[1]] == "#":
-            continue
+    for dx, dy in warps:
+        nx, ny = (x + dx, y + dy)
+        if 0 <= nx < h and 0 <= ny < w and rows[nx][ny] == ".":
+            if mindist[nx][ny] > mindist[x][y] + 1:
+                mindist[nx][ny] = mindist[x][y] + 1
+                q.append((nx, ny))
 
-        mindist[nextPos] = min(dist, mindist[nextPos])
-        q.appendleft((nextPos, mindist[nextPos]))
-
-    for i in range(-2, 3):
-        for j in range(-2, 2):
-            nextPos = (x + i, y + j)
-            if nextPos[0] < 0 or nextPos[0] >= h or nextPos[1] < 0 or nextPos[1] >= w:
-                continue
-
-            if rows[nextPos[0]][nextPos[1]] == "#":
-                continue
-
-            mindist[nextPos] = min(dist, mindist[nextPos])
-            q.append((nextPos, mindist[nextPos]))
-
-if (dh, dw) in mindist:
-    print(mindist[(dh, dw)])
+if mindist[dh][dw] != inf:
+    print(mindist[dh][dw])
 else:
     print(-1)
