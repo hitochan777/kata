@@ -10,8 +10,9 @@ def find_optimal_cost(costs, k):
         for j in range(m):
             maxs[j] = max(sums[i+j+1] - sums[i], maxs[j])
 
+    # print(sums[m])
     if sums[m] > 0:
-        cost = sums[m] * (k // m) + max(maxs[i] for i in range(k % m))
+        cost = sums[m] * (k // m - 1 if k % m == 0 else k // m) + max(maxs[i] for i in range(k % m if k % m > 0 else m))
     else:
         cost = max(maxs[i - 1] for i in range(1, m + 1))
 
@@ -36,7 +37,9 @@ for i in range(n):
     if len(costs) > 0:
         cost_groups.append(costs)
 
+# print(len(cost_groups))
 print(max(find_optimal_cost(costs, k) for costs in cost_groups))
 
-# cost = find_optimal_cost([-1, -2, -3], 2)
-# print(cost)
+# assert find_optimal_cost([-1, -2, -3], 2) == -1
+# assert find_optimal_cost([-1], 2) == -1
+# assert find_optimal_cost([1, 10, -5], 10) == 6 * 3 + 10
