@@ -15,7 +15,7 @@ def find_optimal_cost(costs, k):
     if sums[m] > 0:
         cost += sums[m] * (k // m)
 
-    r = k % m
+    r = k % m if k > m else k
     mx = -10000000000
     for i in range(1, r + 1):
         mx = max(mx, maxs[i - 1])
