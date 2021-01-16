@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 def find_optimal_cost(costs, k):
     cost = 0
     m = len(costs)
@@ -13,14 +11,10 @@ def find_optimal_cost(costs, k):
             maxs[j] = max(sums[i+j+1] - sums[i], maxs[j])
 
     if sums[m] > 0:
-        cost += sums[m] * (k // m)
+        cost = sums[m] * (k // m) + max(maxs[i] for i in range(k % m))
+    else:
+        cost = max(maxs[i - 1] for i in range(1, m + 1))
 
-    r = k % m if k > m else k
-    mx = -10000000000
-    for i in range(1, r + 1):
-        mx = max(mx, maxs[i - 1])
-
-    cost += mx
     return cost
 
 n, k = list(map(int, input().split()))
@@ -43,3 +37,6 @@ for i in range(n):
         cost_groups.append(costs)
 
 print(max(find_optimal_cost(costs, k) for costs in cost_groups))
+
+# cost = find_optimal_cost([-1, -2, -3], 2)
+# print(cost)
