@@ -1,7 +1,7 @@
 A, B, C = list(map(int, input().split()))
-if C == 0:
-    A -= 1
+if A > B:
+    print("Takahashi")
+elif B > A:
+    print("Aoki")
 else:
-    B -= 1
-
-print("Takahashi" if A >= B else "Aoki")
+    print("Takahashi" if C == 1 else "Aoki")
