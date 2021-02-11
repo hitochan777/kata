@@ -2,7 +2,7 @@ from collections import deque
 
 S = input()
 Q = int(input())
-queue = deque()
+queue = deque(S)
 is_reversed = False
 for _ in range(Q):
     query = input().split()
@@ -10,8 +10,7 @@ for _ in range(Q):
         is_reversed = not is_reversed
     else:
         c = query[2]
-        should_append = (query[1] == "1") != is_reversed
-        print(queue)
+        should_append = (query[1] != "1") != is_reversed
         if should_append:
             queue.append(c)
         else:
