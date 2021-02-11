@@ -1,14 +1,24 @@
+from collections import deque
+
 S = input()
 Q = int(input())
+queue = deque()
+is_reversed = False
 for _ in range(Q):
     query = input().split()
     if len(query) == 1:
-        S = S[::-1]
+        is_reversed = not is_reversed
     else:
         c = query[2]
-        if query[1] == "1":
-            S = c + S
+        should_append = (query[1] == "1") != is_reversed
+        print(queue)
+        if should_append:
+            queue.append(c)
         else:
-            S = S + c
+            queue.appendleft(c)
 
-print(S)
+ans = "".join(queue)
+if is_reversed:
+    ans = ans[::-1]
+
+print(ans)
