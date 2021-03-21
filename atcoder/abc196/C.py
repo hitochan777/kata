@@ -1,6 +1,7 @@
 N = int(input())
 l = len(str(N))
 
-total = 0
-for i in range(1, (l-1) // 2):
-    total += (10 * i) - 1
+for i in range(1, 10 ** (l // 2) + 1):
+    if int(str(i) * 2) > N:
+        print(i - 1)
+        break
