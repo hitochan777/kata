@@ -1,11 +1,14 @@
 n = int(input())
 
 i = 1
-cnt = 0
+former = []
 while i * i <= n:
   if n % i == 0:
-    cnt += 1
+    print(i)
+    if i * i != n:
+      former.append(i)
 
   i += 1
 
-print(cnt)
+for i in former[::-1]:
+  print(n // i)
