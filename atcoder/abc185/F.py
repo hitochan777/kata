@@ -1,41 +1,41 @@
 class SegmentTree:
-    def __init__(self, n, operator, identity):
-        self.n = n
-        self.array = [identity for i in range(2 ** (n + 1))]
-        self.identity = identity
-        self.operator = operator
+    def __init__(self, size, f=lambda x,y : x+y, default=0):
+        self.size = 2**(size-1).bit_length()
+        self.default = default
+        self.dat = [default]*(self.size*2-1) 
+        self.f = f
 
-    def update(self, x, val):
-        x += self.n - 1
-        self.array[x] = val
-        while x > 0 :
-            x = (x-1) >> 1
-            self.array[x] = self.operator(self.array[x*2+1],self.array[x*2+2])
+    def update(self, i, x):
+        i += self.size-1
+        self.dat[i] = x
+        while i > 0:
+            i = (i-1) >> 1
+            self.dat[i] = self.f(self.dat[i*2+1], self.dat[i*2+2])
 
-    def get(self, a, b, k = 0, l = 0, r = -1):
-        if r < 0:
-            r = self.n
-        
-        if r <= a or b <= l:
-            return self.identity
-
-        if a <= l and r <= b:
-            return self.array[k]
-
-        vl = self.get(a, b, 2 * k + 1, l , (l + r) >> 1)
-        vr = self.get(a, b, 2 * k + 2, (l + r) >> 1 , r)
-        return self.operator(vl, vr)
+    def query(self, l, r, k=0, L=0, R=None):
+        if R is None:
+            R = self.size
+        if R <= l or r <= L:
+            return self.default
+        if l <= L and R <= r:
+            return self.dat[k]
+        else:
+            lres = self.query(l, r, k*2+1, L, (L+R) >> 1)
+            rres = self.query(l, r, k*2+2, (L+R) >> 1, R)
+            return self.f(lres, rres)
 
 N, Q = (int(x) for x in input().split())
 As = (int(x) for x in input().split())
 
-st = SegmentTree(N, lambda a, b: a ^ b, 0)
+st = SegmentTree(N, lambda a, b: a ^ b)
+for i, a in enumerate(As):
+    st.update(i, a)
 
 for _ in range(Q):
     T, X, Y = (int(x) for x in input().split())
     X -= 1
     if T == 1:
-        a = st.get(X, X+1)
+        a = st.query(X, X+1)
         st.update(X, a ^ Y)
     else: # T = 2
-        print(st.get(X, Y))
+        print(st.query(X, Y))
