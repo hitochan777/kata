@@ -1,4 +1,7 @@
+import sys
 from collections import defaultdict
+
+sys.setrecursionlimit(10000)
 
 N, M = (int(x) for x in input().split())
 
