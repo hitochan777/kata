@@ -6,6 +6,9 @@ ans = 0
 MOD = 10**9 + 7
 
 def n_choose_k(n, k, mod):
+  if n < k:
+    return 0
+
   p, q = 1, 1
   for i in range(k):
     p = (p * (n - i)) % mod
@@ -13,18 +16,7 @@ def n_choose_k(n, k, mod):
 
   return (p * pow(q, mod-2, mod)) % mod
 
-for i in range(N+M):
-  if (i + K) % 2 != 0:
-    continue
-
-  w = (i + K) // 2
-  b = i - w
-  if w < 0 or b < 0 or w > N - 1 or b > M:
-    continue
-
-  c = n_choose_k(w + b, w, MOD)
-  ans += c % MOD
-
-ans = (n_choose_k(N+M, N, MOD) - ans) % MOD
-print(ans)
- 
+if N - M > K:
+  print(0) 
+else:
+  print((n_choose_k(N+M, N, MOD) - n_choose_k(N+M, M+K+1, MOD))%MOD)
