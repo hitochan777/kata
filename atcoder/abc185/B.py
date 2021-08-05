@@ -1,16 +1,17 @@
 def solve():
   N, M, T = (int(x) for x in input().split())
+  cur = N
   prev = 0
   for _ in range(M):
     A, B = (int(x) for x in input().split())
-    N -= A - prev
-    if N <= 0:
+    cur -= A - prev
+    if cur <= 0:
       return False
 
-    N += B - A
+    cur = min(cur + B - A, N)
     prev = B 
   
-  N -= T - prev
-  return T > 0
+  cur -= T - prev
+  return cur > 0
 
 print("Yes" if solve() else "No")
