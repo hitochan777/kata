@@ -13,7 +13,7 @@ dp[0][0] = 1
 for day in range(K):
   s = sum(dp[day])
   for nxt in range(N):
-    dp[day+1][nxt] = (s - dp[day][nxt] - sum(dp[day][node] for node in graph[nxt])) % 998244353
+    dp[day+1][nxt] = s - dp[day][nxt] - sum(dp[day][node] for node in graph[nxt])) % 998244353
 
 
 print(dp[K][0])
