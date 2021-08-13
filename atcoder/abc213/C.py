@@ -12,12 +12,22 @@ for i in range(N):
 x_sorted = sorted(points, key=lambda p: p.x)
 y_sorted = sorted(points, key=lambda p: p.y)
 
-cnt = 1
+cnt, prev = 0, None
 for i, item in enumerate(x_sorted):
-  ans[item.index][0] = i + 1
+  if prev != item.x:
+    cnt += 1
 
+  ans[item.index][0] = cnt
+  prev = item.x
+
+cnt, prev = 0, None
 for i, item in enumerate(y_sorted):
-  ans[item.index][1] = i + 1
+  if prev != item.y:
+    cnt += 1
+
+  ans[item.index][1] = cnt
+  prev = item.y
+
 
 for i in range(N):
   x, y = ans[i+1]
