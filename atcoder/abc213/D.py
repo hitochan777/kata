@@ -1,38 +1,31 @@
+import sys
 from collections import defaultdict
-import heapq
+sys.setrecursionlimit(210000)
 
 graph = defaultdict(list)
 visited = set()
 
-def find_minimum_unvisited(node: int):
-  while len(graph[node]) > 0 and heapq.nsmallest(1, graph[node])[0] in visited:
-    heapq.heappop(graph[node])
-
-  if len(graph[node]) > 0:
-    return heapq.nsmallest(1, graph[node])[0]
-
-  return None
-
-def dfs(node):
+def dfs(node) -> bool:
   if node in visited:
-    return
+    return False
 
   visited.add(node)
   print(node+1, end=" ")
-  minimum = find_minimum_unvisited(node)
-  if minimum is None:
-    return
+  for nb in graph[node]:
+    ok = dfs(nb)
+    if ok:
+      print(node+1, end=" ")
 
-  while minimum is not None:
-    dfs(minimum)
-    print(node+1, end=" ")
-    minimum = find_minimum_unvisited(node)
+  return True
 
 N = int(input())
 for _ in range(N-1):
   A, B = (int(x) for x in input().split())
   A, B = A-1, B-1
-  heapq.heappush(graph[A], B)
-  heapq.heappush(graph[B], A)
+  graph[A].append(B)
+  graph[B].append(A)
+
+for key in graph.keys():
+  graph[key].sort()
 
 dfs(0)
