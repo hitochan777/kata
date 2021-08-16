@@ -1,4 +1,6 @@
+import sys
 from collections import defaultdict
+sys.setrecursionlimit(110000)
 
 graph = defaultdict(list)
 
