@@ -4,3 +4,4 @@ obj
 .vs
 .idea
 **/.vscode/settings.json
+__pycache__

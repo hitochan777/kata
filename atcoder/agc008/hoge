@@ -1,0 +1,56 @@
+dummy-device
+  c2d-receiver
+  data-sender
+
+DummyDevice {
+  channel command-receiver
+  channel c2d-data
+  DeviceClient device
+  DummyDevice() {
+  }
+
+  Start(ctx) {
+    if status == "running" {
+      return
+    }
+    device = new Device(connectionString);
+    command-receiver
+    c2d-data
+    status = "running"
+  }
+
+  Stop() {
+    status = "stop"
+  }
+}
+create DeviceInstance()
+start c2d-receiver
+start command-receiver
+
+DeviceManager() {
+  ListAvailableDevices()
+  StartDevice() 
+  StopDevice()
+  SendCommandToDevice()
+  SubscribeToDeviceC2D()
+}
+
+GRPC Server {
+  ListAvailableDevices()
+  StartDevice() 
+  StopDevice()
+  SendCommandToDevice()
+  SubscribeToDeviceC2D()
+}
+
+^
+|
+|
+v
+
+GraphQL Server {
+  query listAvailabeDevices
+  mutation startDevice
+  mutation stopDevice
+  mutation sendCommandToDevice()
+}
