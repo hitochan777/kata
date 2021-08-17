@@ -25,4 +25,3 @@ for i in range(K):
       break
 
 print(ans)
-      
