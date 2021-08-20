@@ -24,8 +24,8 @@ for i in range(N):
     if i == j:
       continue
 
-    d = get_degree(points[i], points[j])  
-    normalized_points = list(map(lambda p: get_degree_size(d, get_degree(points[i], p)), points))
+    d = get_degree(points[i], points[j])
+    normalized_points = list(map(lambda p: get_degree_size(d, get_degree(points[i], p)), (p for k, p in enumerate(points) if k not in [i, j])))
     normalized_points.sort()
     # print(i, j, d, normalized_points)
     idx = bisect_left(normalized_points, 180)
