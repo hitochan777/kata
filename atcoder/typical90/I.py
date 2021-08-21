@@ -13,22 +13,27 @@ def get_vec(c, p):
 
 def get_degree(c, p):
   x, y = get_vec(c, p) 
-  return math.atan2(y, x) * 180 / math.pi
+  tmp = math.atan2(y, x) * 180 / math.pi
+  return max(tmp, 360 - tmp)
 
 def get_degree_size(d1, d2):
+  # print(d1, d2)
   return min(abs(d1 - d2), 360 - abs(d1 - d2))
 
 max_val = 0
 for i in range(N):
+  normalized_points = list(map(lambda p: get_degree(points[i], p), (p for k, p in enumerate(points) if k != i)))
+  normalized_points.sort()
+  # print(normalized_points)
   for j in range(N):
     if i == j:
       continue
 
     d = get_degree(points[i], points[j])
-    normalized_points = list(map(lambda p: get_degree_size(d, get_degree(points[i], p)), (p for k, p in enumerate(points) if k not in [i, j])))
-    normalized_points.sort()
+    # print(d)
     # print(i, j, d, normalized_points)
-    idx = bisect_left(normalized_points, 180)
-    max_val = max(max_val, normalized_points[max(idx - 1, 0)])
+    idx = bisect_left(normalized_points, (d + 180) % 360)
+    d2 = normalized_points[max(idx - 1, 0)]
+    max_val = max(max_val, get_degree_size(d, d2))
 
 print(max_val)
