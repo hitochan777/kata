@@ -34,6 +34,7 @@ for i in range(N):
     # print(i, j, d, normalized_points)
     idx = bisect_left(normalized_points, (d + 180) % 360)
     d2 = normalized_points[max(idx - 1, 0)]
-    max_val = max(max_val, get_degree_size(d, d2))
+    d3 = normalized_points[idx % (N - 1)] 
+    max_val = max(max_val, get_degree_size(d, d2), get_degree_size(d, d3))
 
 print(max_val)
