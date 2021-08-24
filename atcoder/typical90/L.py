@@ -28,7 +28,7 @@ for _ in range(Q):
 
   else:
     ra, ca, rb, cb = rest
-    if dsu.same(ra * W + ca, rb * W + cb):
+    if colored[ra][ca] and colored[rb][cb] and dsu.same(ra * W + ca, rb * W + cb):
       print("Yes")
     else:
       print("No")
