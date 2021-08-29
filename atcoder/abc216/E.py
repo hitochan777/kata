@@ -10,8 +10,9 @@ ans = 0
 def total(n):
   return n * (n+1) // 2
 
-while K > 0 and cur < N:
+while K > 0 and cur < len(A) - 1:
   val, cnt = A[cur]
+  # print(cur, N, A)
   nxt_val, nxt_cnt  = A[cur+1]
    
   if (val - nxt_val) * cnt <= K:
@@ -19,9 +20,8 @@ while K > 0 and cur < N:
     K -= (val - nxt_val) * cnt
     A[cur+1] = (nxt_val, nxt_cnt+cnt)
   else:
-    tmp = (val - nxt_val) * cnt
     d, m = divmod(K, cnt)
-    ans += (total(val) - total(val-d-1)) * d + (val-d+1) * m
+    ans += (total(val) - total(val-d)) * cnt + (val-d) * m
     K = 0
 
   cur += 1
