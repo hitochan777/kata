@@ -17,16 +17,16 @@ for n in range(N):
     q.append(n)
 
 while len(q) > 0:
-  x = q.pop()
+  x = q.popleft()
   for l in locations[x]:
-    cylinders[l].pop()
+    cylinders[l].popleft()
     if len(cylinders[l]) > 0:
       val = cylinders[l][0]
       locations[val].append(l)
       if len(locations[val]) == 2:
         q.append(val)
 
-is_value_left = any(len(cylinders[i]) > 0 for i in range(M))
+is_value_left = any(len(c) > 0 for c in cylinders)
 
 print("No" if is_value_left else "Yes")
 
