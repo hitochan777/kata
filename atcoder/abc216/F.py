@@ -5,23 +5,29 @@ def make_array(*args, default=int):
   return [make_array(*args[1:]) for _ in range(args[0])]
 
 N = int(input())
-A = list(int(x) for x in input().split())
-B = list(int(x) for x in input().split())
+A = (int(x) for x in input().split())
+B = (int(x) for x in input().split())
 C = list(zip(A, B))
 C.sort()
 Bmax = 5001
+MOD = 998244353
 dp = make_array(N+1, Bmax) 
 dp[0][0] = 1
+total = [0] * Bmax
+total[0] = 1
 
 for i in range(1, N+1):
+  for j in range(C[i-1][1], Bmax):
+    dp[i][j] = total[j-C[i-1][1]]
+
   for j in range(Bmax):
-    # dp[i+1][j] = total[j-C[i][1]]
-    if j >= C[i-1][1]:
-      dp[i][j] = sum(dp[k][j-C[i-1][1]] for k in range(i))
+    total[j] += dp[i][j]
+    total[j] %= MOD
 
 ans = 0
 for i in range(N):
   for j in range(C[i][0]+1):
     ans += dp[i+1][j]
+    ans %= MOD
 
 print(ans)
