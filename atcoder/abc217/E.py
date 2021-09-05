@@ -19,5 +19,3 @@ for _ in range(Q):
     while len(q) > 0:
       val = q.pop()
       heapq.heappush(mq, val)
-
-      # 5 5 3
