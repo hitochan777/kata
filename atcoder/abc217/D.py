@@ -6,7 +6,6 @@ class Compressor:
     self._d = {v: (i+1) for i, v in enumerate(self._dedpued_list)}
 
   def get_original(self, n: int) -> int:
-    # print(n, self._dedpued_list)
     return self._dedpued_list[n-1]
 
   def compress(self, n: int) -> int:
