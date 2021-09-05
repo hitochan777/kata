@@ -6,6 +6,7 @@ class Compressor:
     self._d = {v: (i+1) for i, v in enumerate(self._dedpued_list)}
 
   def get_original(self, n: int) -> int:
+    # print(n, self._dedpued_list)
     return self._dedpued_list[n-1]
 
   def compress(self, n: int) -> int:
@@ -48,7 +49,7 @@ class Bit:
 L, Q = (int(x) for x in input().split())
 
 queries = []
-points = [1, L+1]
+points = [0, L]
 for _ in range(Q):
   c, x = (int(x) for x in input().split())
   points.append(x)
@@ -56,14 +57,15 @@ for _ in range(Q):
 
 compressor = Compressor(points)
 bit = Bit(compressor.size())
-# bit.add(compressor.compress(1), 1)
+bit.add(compressor.compress(0), 1)
 bit.add(compressor.compress(L), 1)
 
 for c, x in queries:
-  idx = compressor.get_original(x)
+  idx = compressor.compress(x)
   if c == 1:
     bit.add(idx, 1)
   else:
-    l, _ = bit.lower_bound(bit.sum(idx))
-    print(idx, bit.sum(idx), l)
-    print(compressor.get_original(l+1) - compressor.get_original(l))
+    l, _ = bit.lower_bound(bit.sum(idx-1))
+    h, _ = bit.lower_bound(bit.sum(idx-1)+1)
+    l, h = min(l, compressor.size()), min(h, compressor.size())
+    print(compressor.get_original(h) - compressor.get_original(l))
