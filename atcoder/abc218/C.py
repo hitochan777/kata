@@ -1,66 +1,57 @@
-import numpy as np
+def rot90(S):
+  return list(zip(*S[::-1]))
 
-N = int(input())
-S = list()
-T = list()
+def find_left_top(S):
+  for i, row in enumerate(S):
+    for j, cell in enumerate(row):
+      if cell == "#":
+        # it is guaranteed that S contains at least one #
+        return i, j
 
-empty_line = "." * N
+def is_same(S, T) -> bool:
+  sti, stj = find_left_top(S)
+  tti, ttj = find_left_top(T)
+  offset_i, offset_j = tti - sti, ttj - stj
+  for i, row in enumerate(S):
+    for j, cell in enumerate(row):
+      ii, jj = i + offset_i , j + offset_j
+      if 0 <= ii < len(S) and 0 <= jj < len(row):
+        if S[i][j] != T[ii][jj]:
+          return False
+      else:
+        if S[i][j] == "#":
+          return False
 
-def remove_redundant(S):
-  new_S = []
-  for s in S:
-    if s == empty_line and len(new_S) == 0:
-      continue
+  return True
 
-    new_S.append(s)
+def solve():
+  N = int(input())
+  S = list()
+  T = list()
 
-  S = new_S
-  new_S = []
-  for s in reversed(S):
-    if s == empty_line and len(new_S) == 0:
-      continue 
+  for _ in range(N):
+    line = input()
+    S.append(line)
 
-    new_S.append(list(s))
+  for _ in range(N):
+    line = input()
+    T.append(list(line))
 
-  return new_S
+  cnt_s = sum(1 for line in S for c in line if c == "#")
+  cnt_t = sum(1 for line in T for c in line if c == "#")
+  if cnt_s != cnt_t:
+    print("No")
+    return
 
-for _ in range(N):
-  line = input()
-  S.append(line)
+  for _ in range(4):
+    if is_same(S, T):
+      print("Yes")
+      return
 
-S = remove_redundant(S)
+    S = rot90(S)
 
-for _ in range(N):
-  line = input()
-  T.append(list(line)) 
+  print("No")
+  return
 
-T = remove_redundant(T)
-
-S = np.array(S)
-T = np.array(T)
-
-
-
-S = S.transpose().tolist()
-T = T.transpose().tolist()
-S = ["".join(s) for s in S]
-S = ["".join(t) for t in T]
-S = remove_redundant(S)
-T = remove_redundant(T)
-print(S)
-print(T)
-
-S = np.array(S)
-T = np.array(T)
-
-ok = False
-for _ in range(4):
-  S = np.rot90(S)
-  if S.shape != T.shape:
-    continue
-  
-  if (S == T).all():
-    ok = True
-    break
-
-print("Yes" if ok else "No")
+if __name__ == "__main__":
+  solve()
