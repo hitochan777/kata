@@ -24,18 +24,15 @@ def create_dfs(g, acc, initialize):
   return dfs
 
 visit = create_dfs(G, lambda cur, res: res + cur, lambda node: [node] if node is not None else [])
-count = create_dfs(RG, lambda cur, res: res + cur, lambda x: 1 if node is not None else 0)
+count = create_dfs(G, lambda cur, res: cur + res, lambda node: 1 if node is not None else 0)
 
 nodes = []
 for node in range(N):
   nodes = nodes + visit(node)
 
-print(nodes)
-
 total = 0
 for node in nodes:
   cnt = count(node)
-  print(cnt)
   total += cnt * (cnt-1) // 2
 
 print(total)
