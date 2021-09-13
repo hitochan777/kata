@@ -11,34 +11,37 @@ for _ in range(M):
   G[A-1].append(B-1)
   RG[B-1].append(A-1)
 
-def create_dfs(g, acc, initialize):
-  visited = set()
-  def dfs(node):
-    if node in visited:
-      return initialize(None)
-    
-    cur = initialize(node)
-    visited.add(node)
-    for nb in g[node]:
-      cur = acc(cur, dfs(nb))
+post_orders = []
+def dfs(node, visited, g):
+  if node in visited:
+    return
+  
+  visited.add(node)
+  for nb in g[node]:
+    dfs(nb, visited, g)
 
-    return cur 
+  post_orders.append(node)
 
-  return dfs
+def dfs2(node, visited, g):
+  if node in visited:
+    return 0
+  
+  cnt = 1
+  visited.add(node)
+  for nb in g[node]:
+    cnt += dfs2(nb, visited, g)
 
-visit = create_dfs(G, lambda cur, res: cur + res, lambda node: [node] if node is not None else [])
-count = create_dfs(RG, lambda cur, res: cur + res, lambda node: 1 if node is not None else 0)
+  return cnt
 
-nodes = []
+visited = set()
 for node in range(N):
-  nodes = visit(node) + nodes
+  dfs(node, visited, G)
 
 total = 0
 # print(nodes)
-for node in nodes:
-  cnt = count(node)
-  if cnt == 0:
-    continue
+visited = set()
+for node in post_orders[::-1]:
+  cnt = dfs2(node, visited, RG)
   # print(node, cnt)
   total += cnt * (cnt-1) // 2
 
