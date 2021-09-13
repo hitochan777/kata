@@ -1,13 +1,16 @@
 from collections import defaultdict
 import sys
 
+readline = sys.stdin.buffer.readline
+read = sys.stdin.buffer.read
+
 sys.setrecursionlimit(1000000)
 
-N, M = (int(x) for x in input().split())
+N, M = (int(x) for x in readline().split())
 G = defaultdict(list) 
 RG = defaultdict(list)
 for _ in range(M):
-  A, B = (int(x) for x in input().split())
+  A, B = (int(x) for x in readline().split())
   G[A-1].append(B-1)
   RG[B-1].append(A-1)
 
@@ -18,7 +21,8 @@ def dfs(node, visited, g):
   
   visited.add(node)
   for nb in g[node]:
-    dfs(nb, visited, g)
+    if nb not in visited:
+      dfs(nb, visited, g)
 
   post_orders.append(node)
 
@@ -29,7 +33,8 @@ def dfs2(node, visited, g):
   cnt = 1
   visited.add(node)
   for nb in g[node]:
-    cnt += dfs2(nb, visited, g)
+    if nb not in visited:
+      cnt += dfs2(nb, visited, g)
 
   return cnt
 
