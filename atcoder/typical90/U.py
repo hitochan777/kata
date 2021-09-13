@@ -1,4 +1,7 @@
 from collections import defaultdict
+import sys
+
+sys.setrecursionlimit(1000000)
 
 N, M = (int(x) for x in input().split())
 G = defaultdict(list) 
@@ -23,16 +26,20 @@ def create_dfs(g, acc, initialize):
 
   return dfs
 
-visit = create_dfs(G, lambda cur, res: res + cur, lambda node: [node] if node is not None else [])
-count = create_dfs(G, lambda cur, res: cur + res, lambda node: 1 if node is not None else 0)
+visit = create_dfs(G, lambda cur, res: cur + res, lambda node: [node] if node is not None else [])
+count = create_dfs(RG, lambda cur, res: cur + res, lambda node: 1 if node is not None else 0)
 
 nodes = []
 for node in range(N):
-  nodes = nodes + visit(node)
+  nodes = visit(node) + nodes
 
 total = 0
+# print(nodes)
 for node in nodes:
   cnt = count(node)
+  if cnt == 0:
+    continue
+  # print(node, cnt)
   total += cnt * (cnt-1) // 2
 
 print(total)
