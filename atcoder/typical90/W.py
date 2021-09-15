@@ -51,5 +51,9 @@ for i in range(H):
           dp[i+1][k] += dp[i][j]
           dp[i+1][k] %= MOD
 
-# print(dp)
-print(sum(dp[H]))
+ans = 0
+for val in dp[H]:
+  ans += val
+  ans %= MOD
+
+print(ans)
