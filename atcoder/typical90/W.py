@@ -4,9 +4,6 @@ def make_array(*args, default=int):
 
   return [make_array(*args[1:], default=default) for _ in range(args[0])]
 
-def only_one_bit(n):
-  return n and (n & (n-1) == 0)
-
 
 MOD = 10**9 + 7
 H, W = (int(x) for x in input().split())
@@ -30,14 +27,23 @@ for i in range(H):
     for k in range(1<<W):
       valid = True
       for l in range(W):
-        if (is_ith_one(j, l) and is_ith_one(k, l)) or (is_ith_one(j, l+1) and is_ith_one(k, l)) or (is_ith_one(j, l) and is_ith_one(k, l+1)):
+        if (is_ith_one(j, l) and is_ith_one(k, l)):
           valid = False
           break
 
-        if is_ith_one(k, l) and ((l-1 >= 0 and is_ith_one(k, l-1)) or (l+1 < W and is_ith_one(k, l+1))):
+        if (is_ith_one(j, l+1) and is_ith_one(k, l)):
           valid = False
+          break
 
-        if is_ith_one(j, l) and lines[i][l] == "#":
+        if (is_ith_one(j, l) and is_ith_one(k, l+1)):
+          valid = False
+          break
+
+        if is_ith_one(k, l) and is_ith_one(k, l+1):
+          valid = False
+          break
+
+        if is_ith_one(k, l) and lines[i][l] == "#":
           valid = False
           break
 
