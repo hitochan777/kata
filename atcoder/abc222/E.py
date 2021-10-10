@@ -12,19 +12,30 @@ for i in range(N-1):
   graph[V].append((U,i))
 
 count = defaultdict(int)
-def dfs(node, prev, goal):
-  if node == goal:
-    return True
+def dfs(start, goal):
+  stack = [(start, -1)]
+  parents = {start: (-1, -1)}
 
-  for nb, edge_num in graph[node]:
-    if nb == prev:
-      continue
+  while len(stack) > 0:
+    node, prev = stack.pop()
+    if node == goal:
+      break
 
-    if dfs(nb, node, goal):
-      count[edge_num] += 1
-      return True
+    for nb, edge_num in graph[node]:
+      if nb == prev:
+        continue
 
-  return False
+      stack.append((nb, node))
+      parents[nb] = (node, edge_num)
+
+  p = goal
+  while True:
+    node, edge_num = parents[p]
+    if node == -1:
+      break
+
+    count[edge_num] += 1
+    p = node
 
 def make_array(*args, default=int):
   if len(args) == 0:
@@ -36,7 +47,7 @@ def make_array(*args, default=int):
 def solve():
   MOD = 998244353
   for i in range(M-1):
-    dfs(A[i], -1, A[i+1])
+    dfs(A[i], A[i+1])
 
   C = [count[i] for i in range(N-1)]
   S = sum(C)
