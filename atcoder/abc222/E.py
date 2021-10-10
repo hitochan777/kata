@@ -54,16 +54,15 @@ def solve():
   if (S + K) % 2 != 0 or S + K < 0:
     return 0
 
-  dp = make_array(N, S + K + 1)
-  dp[0][0] = 1
+  P = (S + K) // 2
+  dp = make_array(P+1)
+  dp[0] = 1
   for i in range(N-1):
-    for j in range(S + K + 1):
-      dp[i+1][j] += dp[i][j]
+    for j in range(P, C[i]-1, -1):
       if j >= C[i]:
-        dp[i+1][j] += dp[i][j-C[i]]
+        dp[j] += dp[j-C[i]]
+        dp[j] %= MOD
 
-      dp[i+1][j] %= MOD
-
-  return dp[N-1][(S + K) // 2]
+  return dp[P]
 
 print(solve())
