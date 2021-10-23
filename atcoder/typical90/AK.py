@@ -17,14 +17,15 @@ dp = make_array(N+1, MAX_SPICE)
 
 for i in range(N):
   l, r, v = dishes[i]
-  st = SegTree(lambda a, b: max(a,b), 0, [dp[i][j] + v for j in range(MAX_SPICE)])
+  st = SegTree(lambda a, b: max(a,b), 0, [dp[i][j] for j in range(MAX_SPICE)])
   for j in range(MAX_SPICE):
     dp[i+1][j] = dp[i][j]
     l, r = max(0, j-l), max(0, j-r+1)
     if l > r:
       continue
 
-    mx = st.prod(l, r)
+    mx = st.prod(l, r) + v
     dp[i+1][j] = max(dp[i+1][j], mx)
 
-print(dp[N][W])
+# print(dp)
+print(dp[N][W] if dp[N][W] > 0 else -1)
