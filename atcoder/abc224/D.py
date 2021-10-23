@@ -1,5 +1,4 @@
 from collections import defaultdict, deque
-
 M = int(input())
 g = defaultdict(list)
 for _ in range(M):
@@ -8,36 +7,40 @@ for _ in range(M):
   g[u].append(v)
   g[v].append(u)
 
-s = ["9"] * 9
-p = list(int(x) for x in input().split())
-for i, el in enumerate(p):
-  s[el-1] = f"{i+1}"
-
+p = list(int(x)-1 for x in input().split())
 visited = set()
+
+def dict_hash(dictionary):
+  s = sum((10**i) * dictionary[i] for i in range(9))
+  return s
+
+p_dict = {el: i for i, el in enumerate(p)}
+empty_idx = None
+for i in range(9):
+  if i not in p_dict:
+    p_dict[i] = 8
+    empty_idx = i
+    break
+
 q = deque()
-q.append((s,0))
-visited.add("".join(s))
+q.append(((p_dict, empty_idx, 0, dict_hash(p_dict))))
+visited.add(dict_hash(p_dict))
+
 ans = -1
 while len(q) > 0:
-  state, cnt = q.popleft()
-  if "".join(state) == "123456789":
+  state, empty_idx, cnt, hash = q.popleft()
+  if all(key == val for key, val in state.items() if key != 8):
     ans = cnt
     break
 
-  empty = None
-  for i in range(9):
-    if state[i] == "9":
-      empty = i
-      break
-
-  for nb in g[empty]:
-    t = state[:]
-    t[empty], t[nb] = t[nb], t[empty]
-    ts = "".join(t)
-    if ts in visited:
+  for nb in g[empty_idx]:
+    p2 = dict(state)
+    p2[empty_idx], p2[nb] = p2[nb], p2[empty_idx]
+    hash = dict_hash(p2)
+    if hash in visited:
       continue
 
-    visited.add(ts)
-    q.append((t,cnt+1))
+    q.append((p2, nb, cnt+1, hash))
+    visited.add(hash)
 
 print(ans)
