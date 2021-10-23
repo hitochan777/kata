@@ -18,3 +18,6 @@ for _ in range(Q):
   q = int(input())
   xp, yp = pos[q-1]
   print(max(abs(xp - min_xp), abs(xp - max_xp), abs(yp - min_yp), abs(yp - max_yp)))
+
+# https://kagamiz.hatenablog.com/entry/2014/12/21/213931
+# this article hsa extremely nice explanation on manhattan distance
