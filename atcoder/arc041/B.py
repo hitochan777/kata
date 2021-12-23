@@ -11,6 +11,9 @@ initial = [[0] * M for _ in range(N)]
 for i in range(1,N+1):
   for j in range(1,M+1):
     min_val = min(lines[i+dx][j+dy] for (dx, dy) in directions)
+    for dx, dy in directions:
+      lines[i+dx][j+dy] -= min_val
+
     initial[i-1][j-1] = min_val
 
 for line in initial:
