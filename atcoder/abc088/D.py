@@ -14,6 +14,9 @@ dirs = [(-1,0),(1,0),(0,-1),(0,1)]
 dist = defaultdict(lambda: 10**18) 
 while len(q) > 0:
   x, y, d = q.pop()
+  if lines[x-1][y-1] == "#":
+    continue
+
   dist[(x,y)] = min(dist[(x,y)],d)
   for dx, dy in dirs: 
     pos = (x + dx, y + dy)
