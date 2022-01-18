@@ -20,7 +20,10 @@ for i in range(N+1):
         if R[i-1] > R[j-1]:
           dp[i][0] = max(dp[i][0], dp[j][1] + 1)
 
-print(dp)
+ans = 0
+for i in range(N+1):
+ for j in range(2):
+   if dp[i][j] >= 3:
+    ans = max(ans, dp[i][j])
 
-ans = max(dp[i][j] for i in range(N+1) for j in range(2))
 print(ans)
