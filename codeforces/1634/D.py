@@ -1,6 +1,7 @@
 import sys
 
-def remove_impossible(target: list[int]) -> tuple[list[int], int]:
+
+def remove_impossible(target):
     pairs = []
     for i in range(4):
         query = ["?"]
@@ -24,7 +25,7 @@ def solve():
     n = int(input())
     target = [1, 2]
     removed = None
-    for i in range(3, n + 1, 2):
+    for i in range(3, n, 2):
         target.append(i)
         target.append(i + 1)
         target, removed = remove_impossible(target)
