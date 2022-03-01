@@ -10,9 +10,7 @@ for _ in range(Q):
   queries.append(q)
 
 nums = sorted(list(set([q[1] for q in queries])))
-print(nums)
-d = compress(q)
-print(d)
+d = compress(nums)
 N = len(d)
 ft = FenwickTree(N)
 for q in queries:
@@ -25,7 +23,7 @@ for q in queries:
     l, h = 0, N
     while l <= h:
       m = (l + h) >> 1
-      total = ft.sum(m, x+1)
+      total = ft.sum(m, x+1) if  0 <= x <= m + 1 <= Nm <= x + 1 else 0
       if total >= k:
         l = m + 1
       else:
@@ -41,19 +39,13 @@ for q in queries:
     l, h = 0, N
     while l <= h:
       m = (l + h) >> 1
-      total = ft.sum(x, m+1)
+      total = ft.sum(x, m+1) if 0 <= x <= m + 1 <= N else 0
       if total >= k:
-        h = m + 1
+        h = m - 1
       else:
-        l = m - 1
+        l = m + 1
 
     if 0 <= l < N:
       print(nums[l])
     else:
       print(-1)
-    
-
-
-
-
-
