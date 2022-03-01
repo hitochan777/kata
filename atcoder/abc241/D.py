@@ -20,32 +20,32 @@ for q in queries:
     ft.add(x, 1)
   elif c == 2:
     k = q[2]
-    l, h = 0, N
-    while l <= h:
-      m = (l + h) >> 1
-      total = ft.sum(m, x+1) if  0 <= x <= m + 1 <= Nm <= x + 1 else 0
+    ok, ng = -1, N
+    while abs(ok - ng) > 1:
+      m = (ok + ng) >> 1
+      total = ft.sum(m, x+1) if 0 <= m <= x + 1 <= N else 0
       if total >= k:
-        l = m + 1
+        ok = m
       else:
-        h = m - 1
+        ng = m
 
-    if 0 <= l < N:
-      print(nums[l])
+    if ok >= 0:
+      print(nums[ok])
     else:
       print(-1)
 
   else:
     k = q[2]
-    l, h = 0, N
-    while l <= h:
-      m = (l + h) >> 1
+    ng, ok = -1, N
+    while abs(ok - ng) > 1:
+      m = (ok + ng) >> 1
       total = ft.sum(x, m+1) if 0 <= x <= m + 1 <= N else 0
       if total >= k:
-        h = m - 1
+        ok = m
       else:
-        l = m + 1
+        ng = m
 
-    if 0 <= l < N:
-      print(nums[l])
+    if ok < N:
+      print(nums[ok])
     else:
       print(-1)
