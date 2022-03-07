@@ -29,12 +29,12 @@ def f(l, x):
 
 total = [0] * (N+1)
 total[0] = 0
-for i in range(N+1):
+for i in range(N):
   total[i+1] = total[i] * 2 + 3
 
 patty = [0] * (N+1)
 patty[1] = 1
-for i in range(1,N+1):
+for i in range(1,N):
   patty[i+1] = patty[i] * 2 + 1
 
 print(f(N,X-1))
