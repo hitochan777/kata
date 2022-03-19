@@ -1,25 +1,18 @@
+import math
 N = int(input())
-A = []
-B = []
+AB = []
 for i in range(N):
   a, b = (int(x) for x in input().split())
-  A.append((a, i))
-  B.append((b, i))
+  AB.append((a + b, a, b))
 
-A.sort(reverse=True)
-B.sort(reverse=True)
-li = [A, B]
-ps = [0, 0]
-eaten = set()
-totals = [0, 0]
+AB.sort(reverse=True)
+X = 0
 for i in range(N):
-  p = i % 2
-  while li[p][ps[p]][1] in eaten:
-    ps[p] += 1
+  if i % 2 == 0:
+    X += AB[i][1]
+  else:
+    X -= AB[i][2]
 
-  eaten.add(li[p][ps[p]][1])
-  totals[p] += li[p][ps[p]][0]
-
-print(totals[0] - totals[1])
+print(X)
 
     
