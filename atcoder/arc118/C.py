@@ -16,6 +16,6 @@ while cur <= 10000:
   s.add(cur)
   cur += 15
 
-ans = sorted(list(s))[:N]
+ans = sorted(list(s))
 ans[2], ans[3] = ans[3], ans[2]
-print(*ans)
+print(*ans[:N])
