@@ -21,7 +21,9 @@ cnts[1].sort()
 ans = 10**18
 for n in cnts[0]:
   idx = bisect_left(cnts[1], n)
-  ans = min(ans, abs(n - cnts[1][idx]))
+  if idx < len(cnts[1]):
+    ans = min(ans, abs(n - cnts[1][idx]))
+
   if idx > 0:
     ans = min(ans, abs(n - cnts[1][idx-1]))
 
