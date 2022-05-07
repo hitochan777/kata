@@ -3,11 +3,12 @@ S = list(input())
 T = list(input())
 
 ans = 0
-j = 1
+j = 0
 for i in range(N):
   if S[i] == T[i]:
     continue
 
+  j = max(j, i + 1)
   while j < N and S[j] != "1":
     j += 1
 
