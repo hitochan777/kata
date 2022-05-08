@@ -1,4 +1,7 @@
 def solve(s: str) -> int:
+  if s > "atcoder":
+    return 0
+
   idx = None
   for i, c in enumerate(s):
     if c != "a":
