@@ -1,53 +1,58 @@
-H, W, N, M = (int(x) for x in input().split())
+import sys
 
-lights = []
+H, W, N, M = (int(x) for x in sys.stdin.readline().split())
+
+cells1 = [[0] * W for _ in range(H)]
+cells2 = [[0] * W for _ in range(H)]
 for _ in range(N):
-    light = tuple(int(x) for x in input().split())
-    lights.append(light)
+    x, y = (int(x) for x in sys.stdin.readline().split())
+    x, y = x - 1, y - 1
+    cells1[x][y] = 1
+    cells2[x][y] = 1
 
-blocks = set()
 for _ in range(M):
-    block= tuple(int(x) for x in input().split())
-    blocks.add(block)
+    x, y = (int(x) for x in sys.stdin.readline().split())
+    x, y = x - 1, y - 1
+    cells1[x][y] = 2
+    cells2[x][y] = 2
 
-visited = set()
-lighted = set()
+for i in range(H):
+    lighted = 0
+    for j in range(W):
+        if cells1[i][j] == 1:
+            lighted = 1
+        elif cells1[i][j] == 2:
+            lighted = 0
 
-def visit(x, y, dx, dy):
-    if x < 1 or x > H or y < 1 or y > W:
-        return
+        cells1[i][j] |= lighted
 
-    if (x, y) in visited:
-        return
+    lighted = 0 
+    for j in range(W - 1, -1, -1):
+        if cells1[i][j] == 1:
+            lighted = 1
+        elif cells1[i][j] == 2:
+            lighted = 0
 
-    visited.add((x, y))
-    if (x, y) in blocks:
-        return
+        cells1[i][j] |= lighted
 
-    lighted.add((x, y))
-    visit(x + dx, y + dy, dx, dy)
+for j in range(W):
+    lighted = 0
+    for i in range(H):
+        if cells2[i][j] == 1:
+            lighted = 1
+        elif cells2[i][j] == 2:
+            lighted = 0
 
-for x, y in lights:
-    if (x, y) in visited:
-        continue
+        cells2[i][j] |= lighted
 
-    visit(x + 1, y, 1, 0)
-    visit(x - 1, y, -1, 0)
+    lighted = 0 
+    for i in range(H - 1, -1, -1):
+        if cells2[i][j] == 1:
+            lighted = 1
+        elif cells2[i][j] == 2:
+            lighted = 0
 
-    visited.add((x, y))
-    if (x, y) not in blocks:
-        lighted.add((x, y))
+        cells2[i][j] |= lighted
 
-visited = set()
-for x, y in lights:
-    if (x, y) in visited:
-        continue
-
-    visit(x, y + 1, 0, 1)
-    visit(x, y - 1, 0, -1)
-
-    visited.add((x, y))
-    if (x, y) not in blocks:
-        lighted.add((x, y))
-
-print(len(lighted))
+cnt = sum(1 for i in range(H) for j in range(W) if cells1[i][j] == 1 or cells2[i][j] == 1)
+print(cnt)
