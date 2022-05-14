@@ -19,7 +19,4 @@ for i in range(N):
       if total <= W:
         s.add(total)
 
-for i in sorted(list(s)):
-  print(i)
-
 print(len(s))
