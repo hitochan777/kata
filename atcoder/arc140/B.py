@@ -29,6 +29,7 @@ while i < j:
   while cnts[i] > 0 and i < j:
     ans += 2
     cnts[i] -= 1
+    cnts[j] = 0
     j -= 1
 
   if cnts[i] == 0:
