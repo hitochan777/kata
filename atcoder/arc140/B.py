@@ -18,24 +18,4 @@ while i < len(S):
 
   i += j
 
-if len(cnts) == 0:
-  print(0)
-  exit()
-
-cnts.sort(reverse=True)
-i, j = 0, len(cnts)-1
-ans = 0
-while i < j:
-  while cnts[i] > 0 and i < j:
-    ans += 2
-    cnts[i] -= 1
-    cnts[j] = 0
-    j -= 1
-
-  if cnts[i] == 0:
-    i += 1
-
-ans += min(cnts[i], 2)
-print(ans)
-
-
+print(min(len(cnts) * 2, sum(cnts)))
