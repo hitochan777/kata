@@ -18,7 +18,7 @@ if W % 2 == 1:
     cnt[key] %= 2
 
 rem = sum(cnt.values())
-if H % 2 == 1 & W % 2 == 1:
+if H % 2 == 1 and W % 2 == 1:
   target = 1
 else:
   target = 0
