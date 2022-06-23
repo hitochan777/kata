@@ -6,16 +6,38 @@ for _ in range(H):
   line += input() 
 
 cnt = Counter(line)
-for key in cnt.keys():
-  cnt[key] %= 4
-
-if H % 2 == 1:
+fours = (H // 2) * (W // 2)
+while fours > 0:
   for key in cnt.keys():
-    cnt[key] %= 2
+    if cnt[key] >= 4:
+      cnt[key] -= 4
+      fours -= 1
+      break
+  else:
+    print("No")
+    exit()
 
-if W % 2 == 1:
+twos = H // 2 if W % 2 == 1 else 0
+while twos > 0:
   for key in cnt.keys():
-    cnt[key] %= 2
+    if cnt[key] >= 2:
+      cnt[key] -= 2
+      twos -= 1
+      break
+  else:
+    print("No")
+    exit()
+
+twos = W // 2 if H % 2 == 1 else 0
+while twos > 0:
+  for key in cnt.keys():
+    if cnt[key] >= 2:
+      cnt[key] -= 2
+      twos -= 1
+      break
+  else:
+    print("No")
+    exit()
 
 rem = sum(cnt.values())
 if H % 2 == 1 and W % 2 == 1:
