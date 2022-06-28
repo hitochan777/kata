@@ -20,7 +20,7 @@ for i in range(1<<n):
     print(len(lists[total][0]), *lists[total][0])
     print(len(seq), *seq)
     exit()
-  else:
+  elif len(seq) > 0:
     lists[total].append(seq)
     
 print("No")
