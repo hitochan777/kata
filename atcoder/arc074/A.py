@@ -1,6 +1,3 @@
-from turtle import update
-
-
 H, W = (int(x) for x in input().split())
 
 ans = 10**18
