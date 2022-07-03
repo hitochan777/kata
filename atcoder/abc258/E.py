@@ -24,6 +24,7 @@ while True:
   if idx >= N+1:
     idx = bisect_left(acc, X - (acc[-1] - acc[start_idx]))
     
+  C.append((N + idx - start_idx) % N)
   C.append(N if idx == start_idx else idx - start_idx)
   if idx in start_idx_set:
     repeat_start_idx = idx
@@ -32,11 +33,11 @@ while True:
   start_idx = idx
   start_idx_set.add(idx)
   
-
+print(repeat_start_idx, C)
 for _ in range(Q):
   K = int(input()) - 1
   if K <= repeat_start_idx:
     print(C[K] + base_cnt)
   else:
-    i = (K - repeat_start_idx) % len(C) + repeat_start_idx
+    i = (K - repeat_start_idx) % (len(C) - repeat_start_idx - 1) + repeat_start_idx
     print(C[i] + base_cnt)
