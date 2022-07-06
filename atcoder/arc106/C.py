@@ -1,5 +1,11 @@
 N, M = (int(x) for x in input().split())
 
+if M == 0:
+  for i in range(N):
+    print(2*i+1, 2*(i+1))
+  
+  exit()
+
 if M < 0 or M > N - 2:
   print(-1)
   exit()
