@@ -1,37 +1,31 @@
 import heapq
 
-N = int(input())
-S = list((int(x), i) for i, x in enumerate(input().split()))
-L = [(-x, i) for x, i in S]
-id = N
+S = int(input())
+A = sorted(list(int(x) for x in input().split()))
+pluses = [A[-1]]
+minuses = [A[0]]
 
-heapq.heapify(S)
-heapq.heapify(L)
+for a in A[1:-1]:
+  if a < 0:
+    minuses.append(a)
+  else:
+    pluses.append(a)
 
-used = set()
-li = []
-for i in range(N-2):
-  while True:
-    x, j = heapq.heappop(S)
-    if j not in used:
-      used.add(j)
-      break
+ans = 0
+ops = []
+while len(pluses) > 1:
+  m = minuses.pop()
+  p = pluses.pop()
+  ops.append((m, p))
+  minuses.append(m-p)
 
-  while True:
-    y, j = heapq.heappop(L)
-    if j not in used:
-      used.add(j)
-      break       
+ans = pluses[0]
+for m in minuses:
+  ops.append((ans, m))
+  ans -= m
 
-  z = x + y
-  li.append((x, -y))
-  heapq.heappush(S, (z, id))
-  heapq.heappush(L, (-z, id))
-  id += 1
+print(ans)
+for op in ops:
+  print(*op)
   
-x, _ = heapq.heappop(S)
-y, _ = heapq.heappop(S)
-li.append((y, x))
-print(y-x)
-for x, y in li:
-  print(x, y)
+  
