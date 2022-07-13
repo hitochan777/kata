@@ -18,21 +18,19 @@ for _ in range(N):
     else:
       x = d[p][0]
       y = d[p][1]
-      d[p] = [min(e, x, y), max(e, x, y)]
+      d[p] = sorted([e,x,y])[1:]
   
   plili.append(pli)
 
-# print(d)
-# print(plili)
 ans = set()
 for pli in plili:
   li = []
   for p, e in pli:
-    if (len(d[p]) == 1 and d[p][0] == e) or d[p][1] == e:
-      if len(d[p]) == 1 or d[p][0] != d[p][1]:
-        li.append(p)
+    if len(d[p]) == 1:
+      li.append(p)
+    elif d[p][1] == e and d[p][0] != d[p][1]:
+      li.append(p)
 
   ans.add(tuple(li))
-  # print(ans)
 
 print(len(ans))
