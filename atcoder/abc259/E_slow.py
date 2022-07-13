@@ -8,7 +8,8 @@ for _ in range(N):
   for _ in range(m):
     p, e = (int(x) for x in input().split())
     n *= p**e
-    nums.append(n)
+
+  nums.append(n)
   
 ans = set()
 for i in range(N):
