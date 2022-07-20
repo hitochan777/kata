@@ -18,13 +18,13 @@ while True:
 
 idx = sums.index(X)
 repeating_sum = sum(nums[idx:])
+
 ans = 0
-for i in range(min(K, idx+1)):
+for i in range(min(K, idx)):
   ans += nums[i]
 
-print(K, idx, nums)
-for i in range(max(K-(idx+1), 0) % (len(nums)-idx+1)):
+for i in range(max(K-idx, 0) % (len(nums)-idx)):
   ans += nums[idx+i]
 
-ans += repeating_sum * (max(K-(idx+1), 0) // (len(nums)-idx+1))
+ans += repeating_sum * (max(K-idx, 0) // (len(nums)-idx))
 print(ans)
