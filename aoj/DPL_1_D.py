@@ -1,11 +1,14 @@
+from bisect import bisect_left
+
 N = int(input())
-dp = [1] * (N+1)
 A = []
 for _ in range(N):
   a = int(input())
   A.append(a)
 
-for i in range(1,N):
-  dp[i+1] = max(dp[j+1] + 1 if A[j] < A[i] else 1 for j in range(i))
+smallest = [10**18] * N 
+for i in range(N):
+  idx = bisect_left(smallest, A[i])
+  smallest[idx] = min(A[i], smallest[idx])
 
-print(max(dp))
+print(max(i+1 for i in range(N) if smallest[i] < 10**18))
