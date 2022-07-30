@@ -10,6 +10,7 @@ for i, c in enumerate(s+s):
 
 p = 0
 wrapped = 0
+print(indices)
 for c in t:
   idx = bisect_left(indices[c], p)
   if idx >= len(indices[c]):
@@ -19,6 +20,9 @@ for c in t:
   if indices[c][idx] >= len(s):
     wrapped += 1
 
-  p = indices[c][idx] % len(s)
+  if (indices[c][idx] % len(s)) + 1 >= len(s):
+    wrapped += 1
 
-print(wrapped * len(s) + p + 1)
+  p = (indices[c][idx] + 1) % len(s)
+
+print(wrapped * len(s) + p)
