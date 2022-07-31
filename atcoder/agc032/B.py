@@ -1,28 +1,12 @@
-from collections import defaultdict
-import itertools
-
 N = int(input())
-nums = [x+1 for x in range(N)]
-subsets = [subset for subset in itertools.combinations(nums, 2)]
+edges = []
+for i in range(1, N+1):
+  for j in range(i+1, N+1):
+    if i + j == N + (1 if N % 2 == 0 else 0):
+      continue
 
-for i in range(1<<len(subsets)):
-  if i == 0:
-    continue
+    edges.append((i, j))
 
-  cnt = defaultdict(int)
-  edges = []
-  for j in range(len(subsets)):
-    if (i>>j) & 1 == 1:
-      a, b = subsets[j]
-      cnt[a] += b
-      cnt[b] += a
-      edges.append((a,b))
-
-  s = set(cnt[num] for num in nums)
-  if len(s) == 1:
-    print(len(edges))
-    for edge in edges:
-      print(*edge)
-    exit()
-
-    
+print(len(edges))
+for edge in edges:
+  print(*edge)
