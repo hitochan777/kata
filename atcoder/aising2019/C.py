@@ -1,12 +1,13 @@
+import sys
+
+sys.setrecursionlimit(10**6)
+
 H, W = (int(x) for x in input().split())
 g = []
 for _ in range(H):
   g.append(input())
 
 def dfs(i, j, visited):
-  if (i, j) in visited:
-    return (0, 0)
-
   visited.add((i,j))
   c1, c2 = 0, 0
   if g[i][j] == ".":
@@ -14,11 +15,14 @@ def dfs(i, j, visited):
   else:
     c2 = 1
 
-  for dx, dy in [(0, 1), (1, 0)]:
-    if i + dx >= H or j + dy >= W:
+  for dx, dy in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
+    if i + dx >= H or j + dy >= W or i + dx < 0 or j + dy < 0:
       continue
 
     if g[i+dx][j+dy] == g[i][j]:
+      continue
+
+    if (i + dx, j + dy) in visited:
       continue
 
     c = dfs(i + dx, j + dy, visited)
