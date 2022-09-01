@@ -6,12 +6,12 @@ for _ in range(N):
 
 def solve(A):
   if A[0] != 0:
-    return False
+    return (False, 0)
 
-  if all(abs(A[i+1] - A[i]) == 1 for i in range(N-1)):
-    return (True,  sum(1 for a in range(A) if a != 0))
+  if all(abs(A[i+1] - A[i]) <= 1 for i in range(N-1)):
+    return (True,  sum(1 for a in A if a != 0))
   else:
-    (False, 0)
+    return (False, 0)
 
 ok, cnt = solve(A)
 if ok:
