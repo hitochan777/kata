@@ -27,8 +27,9 @@ while len(h) > 0:
   visited.add(node)
   ans = max(ans, cost) 
   for x in g[node]:
-    costs[x] -= A[node]
-    heapq.heappush(h, (costs[x], x))
+    if x not in visited:
+      costs[x] -= A[node]
+      heapq.heappush(h, (costs[x], x))
 
 print(ans)
 
