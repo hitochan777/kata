@@ -13,6 +13,7 @@ if N > 60:
 
 ans = 0
 l = len(bin(M))-2
+res = (M & ((1 << (l-1)) - 1)) + 1
 dp = make_array(N+1, l+1)
 dp[0][0] = 1
 for i in range(N):
@@ -22,7 +23,8 @@ for i in range(N):
       tmp += dp[i][k]
       tmp %= MOD
 
-    dp[i+1][j] = (tmp * (1<<(j-1))) % MOD
+    mul = res if j == l else 1<<(j-1)
+    dp[i+1][j] = (tmp * mul) % MOD
 
-print(dp)
+# print(dp)
 print(sum(dp[N]) % MOD)
