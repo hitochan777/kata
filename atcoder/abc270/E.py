@@ -21,7 +21,7 @@ total = sum([min(ok-1, a) for a in A])
 rem = [a-min(ok-1, a) for a in A]
 i = 0
 while total < K:
-  while A[i] == 0:
+  while rem[i] == 0:
     i += 1
 
   rem[i] -= 1
