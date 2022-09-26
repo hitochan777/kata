@@ -25,6 +25,7 @@ while total < K:
     i += 1
 
   rem[i] -= 1
+  total += 1
 
 print(*rem)
 
