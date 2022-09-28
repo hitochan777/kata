@@ -1,6 +1,8 @@
 N, K = (int(x) for x in input().split())
 A = list(int(x) for x in input().split())
 
+A.sort()
+
 acc = [0]
 for a in A:
   acc.append(acc[-1]+a)
