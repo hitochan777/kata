@@ -1,8 +1,6 @@
 N, K = (int(x) for x in input().split())
 A = list(int(x) for x in input().split())
 
-A.sort()
-
 acc = [0]
 for a in A:
   acc.append(acc[-1]+a)
@@ -13,7 +11,9 @@ for i in range(N):
   while r < N and acc[r+1] - acc[i] <= K:
     r += 1
 
+  # print(r-i, r, i)
   ans += r - i
+  r -= 1
 
 print(ans)
   
