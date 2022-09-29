@@ -8,6 +8,9 @@ for a in A:
 r = 1
 ans = 0
 for i in range(N):
+  if A[i] > K:
+    continue
+
   while r < N and acc[r+1] - acc[i] <= K:
     r += 1
 
@@ -16,6 +19,3 @@ for i in range(N):
   r -= 1
 
 print(ans)
-  
-
-
