@@ -10,4 +10,4 @@ for i in range(N):
   dp[i+1] = bisect_left(L, A[i])
   L[dp[i+1]] = A[i]
 
-print(dp[N])
+print(max(dp))
