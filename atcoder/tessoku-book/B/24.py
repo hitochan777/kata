@@ -5,7 +5,7 @@ for _ in range(N):
   X, Y = (int(x) for x in input().split())
   boxes.append((X,Y))
 
-boxes.sort()
+boxes.sort(key=lambda e: (e[0], -e[1]))
 A = [y for _, y in boxes]
 
 dp = [0] * (N+1)
