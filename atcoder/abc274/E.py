@@ -22,6 +22,9 @@ for s in range(1<<(N+M)):
       continue
 
     for j in range(N+M):
+      if (s >> j) & 1 == 1:
+        continue
+
       dp[j][s|(1<<j)] = min(dp[j][s|1<<j], dp[i][s] + dist(pos[i], pos[j]) / speed)
 
 ans = 10**18
