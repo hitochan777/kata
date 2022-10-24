@@ -23,6 +23,3 @@ for m in range(M):
     if i not in vals[m]:
       print(i)
       break
-
-
-  
