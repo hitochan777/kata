@@ -11,7 +11,7 @@ st = SegTree(lambda x,y: min(x,y), 10**18, dp)
 for i in range(1, N):
   l = bisect_left(X, X[i]-R)
   r = bisect_left(X, X[i]-L)
-  dp[i] = st.prod(l, r) + 1
+  dp[i] = st.prod(l, r+1) + 1
   st.set(i, dp[i])
 
 print(dp[N-1])
