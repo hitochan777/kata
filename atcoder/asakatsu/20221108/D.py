@@ -6,7 +6,7 @@ def solve(N, K, S):
   if ones == c and zeros == 0:
     exists = True
 
-  for i in range(1,N-K):
+  for i in range(1,N-K+1):
     if S[i-1] == "1":
       ones -= 1
     elif S[i-1] == "0":
