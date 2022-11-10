@@ -1,35 +1,32 @@
-from heapq import heappush, heappop
 N, K = (int(x) for x in input().split())
 A = list(int(x) for x in input().split())
+D = 42
 
-max_A_bits = max(len(bin(a))-2 for a in A)
-K_bits = len(bin(K))-2
-max_bits = max(max_A_bits, K_bits)
+dp = [[-10**18] * 2 for _ in range(D+1)]
+dp[0][0] = 0
+for d in range(D):
+  for l in range(2):
+    if dp[d][l] == -10**18:
+      continue
 
-ans = 0
-infos = []
-for i in range(max_bits-1, -1, -1):
-  cnt = sum(1 for a in A if (a >> i) & 1 == 1)
-  heappush(infos, (-(1<<i) * cnt, 1, i))
-  heappush(infos, (-(1<<i) * (N-cnt), 0, i))
+    shift = D-d-1
+    mask = 1 << shift
+    zero, one = 0, 0
+    for a in A:
+      if a & mask == 0:
+        zero += 1
+      else:
+        one += 1
+    if l == 0:
+      if K & mask == 0:
+        dp[d+1][0] = max(dp[d+1][0], dp[d][l] + one * mask)
+      else:
+        dp[d+1][1] = max(dp[d+1][1], dp[d][l] + one * mask)
+    else:
+        dp[d+1][1] = max(dp[d+1][1], dp[d][l] + max(one, zero) * mask)
 
-used = set()
-cur = 0
-ans = 0
-print(infos)
-while len(infos) > 0:
-  val, bit, n = heappop(infos)
-  val = -val
-  if n in used:
-    continue
-
-  used.add(n)
-  tmp = cur + (1 << n) * bit
-  if tmp <= K:
-    cur = tmp
-    ans += val
-  
-print(ans)
+print(dp)
+print(max(dp[D][0], dp[D][1]))
     
 
     
