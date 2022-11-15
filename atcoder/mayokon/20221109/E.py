@@ -21,11 +21,11 @@ for d in range(D):
       if K & mask == 0:
         dp[d+1][0] = max(dp[d+1][0], dp[d][l] + one * mask)
       else:
-        dp[d+1][1] = max(dp[d+1][1], dp[d][l] + one * mask)
+        dp[d+1][0] = max(dp[d+1][0], dp[d][l] + one * mask)
+        dp[d+1][1] = max(dp[d+1][1], dp[d][l] + zero * mask)
     else:
         dp[d+1][1] = max(dp[d+1][1], dp[d][l] + max(one, zero) * mask)
 
-print(dp)
 print(max(dp[D][0], dp[D][1]))
     
 
