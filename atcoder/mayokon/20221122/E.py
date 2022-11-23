@@ -1,28 +1,20 @@
-from atcoder.segtree import SegTree
-
 N, K = (int(x) for x in input().split())
 
 MOD = 998244353
-A = [0] * (N+1)
-A[0] = 1
-A[1] = -1
+dp = [0] * N
+dp[0] = 1
+acc = [0, 1]
 ranges = []
 for _ in range(K):
   L, R = (int(x) for x in input().split())
   ranges.append((L,R))
 
-for i in range(N-1):
-  for L, R in ranges:
-    L = min(i+L, N)
-    R = min(i+R+1,N)
-    A[L] += A[i]
-    if L != R:
-      A[R] -= A[i]
+for i in range(1,N):
+  for l, r in ranges:
+    dp[i] += acc[max(0, i-l+1)] - acc[max(0, i-r)]
+    dp[i] %= MOD
 
-print(A)
+  acc.append(acc[-1]+dp[i])
 
-for i in range(N):
-  A[i+1] += A[i]
-  A[i+1] %= MOD
-
-print(A[N-1])
+# print(dp)
+print(dp[N-1])
