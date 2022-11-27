@@ -27,7 +27,7 @@ for _ in range(Q):
       ld2box[num] = x
     else:
       dsu.merge(box2ld[x],num)
-      box2ld[x], box2ld[num] = num, -1
+      box2ld[x], box2ld[num] = dsu.leader(num), -1
       ld2box[box2ld[x]] = x
 
     num += 1
