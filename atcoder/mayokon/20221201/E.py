@@ -1,6 +1,4 @@
-import sys
 from collections import defaultdict, deque
-sys.setrecursionlimit(10**6)
 N = int(input())
 g = defaultdict(list)
 edges = []
