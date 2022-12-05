@@ -21,8 +21,18 @@ def factorization(n):
     return arr
 
 fac = factorization(K)
-Kcnt = defaultdict(int)
+ans = 0
+# print(fac)
 for k, v in fac:
-  Kcnt[k] = v
+  cnt = 0
+  for i in range(v):
+    n = (i+1) * k
+    while n % k == 0:
+      n //= k
+      cnt += 1
 
-print(max([k * v for k, v in Kcnt.items()]))
+    if cnt >= v:
+      ans = max(ans, (i+1)*k)
+      break
+
+print(ans)
