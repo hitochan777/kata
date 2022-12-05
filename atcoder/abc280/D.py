@@ -1,4 +1,3 @@
-from collections import defaultdict, Counter
 K = int(input())
 
 def factorization(n):
