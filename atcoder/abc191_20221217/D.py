@@ -1,12 +1,14 @@
-from math import ceil
-X, Y, R = (int(float(x)*1000) for x in input().split())
+import math
+X, Y, R = (round(float(x)*10000) for x in input().split())
 
 ans = 0
-for y in range(ceil((Y-R)/1000),int((Y+R)/1000)+1):
-  y *= 1000
-  K = (R**2-(y-Y)**2)**0.5
-  diff = (int(K-X) - ceil(-K-X)) // 1000 + 1
-  print(diff)
-  ans += diff
+start = (Y-R) // 10000
+end = (Y+R) // 10000
+for y in range(start, end+1):
+  val = R**2-(y*10000-Y)**2
+  if val >= 0:
+    K = math.isqrt(val)
+    diff = (X+K)//10000-(X-K-1)//10000
+    ans += diff
 
 print(ans)
