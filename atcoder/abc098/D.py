@@ -10,7 +10,7 @@ for a in A:
 r = 1
 ans = 0
 for l in range(N):
-  while r < N and (asum[r+1] - asum[l]) == (axor[r+1] - axor[l]):
+  while r < N and (asum[r+1] - asum[l]) == (axor[r+1]^axor[l]):
     r += 1
 
   if r == l:

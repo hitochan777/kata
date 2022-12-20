@@ -17,8 +17,9 @@ for d in range(D):
     for k in range(P[d]):
       dp[d+1][min(num, n+k)] = max(dp[d+1][min(num, n+k)], dp[d][n]+k*(d+1))
     
-    dp[d+1][min(num, n+P[d])] = max(dp[d+1][min(num, n+k)], dp[d][n]+k*P[d]+C[d])
+    dp[d+1][min(num, n+P[d])] = max(dp[d+1][min(num, n+P[d])], dp[d][n]+P[d]+C[d])
 
+print(dp)
 ans = None
 for i, score in enumerate(dp[D]):
   if score >= G:
