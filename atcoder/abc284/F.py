@@ -19,12 +19,12 @@ class RollingHash():
 N = int(input())
 T = input()
 base = 26
-mod = 2**60 - 1
+mod = 10**9 + 9
 rh = RollingHash(T, base, mod)
 rh_rev = RollingHash(T[::-1], base, mod)
 
 for i in range(N+1):
-  h = (rh.get(0, i) * pow(base, N-i, mod) + rh.get(i+N, 2*N)) % mod
+  h = ((rh.get(0, i) * pow(base, N-i, mod))%mod + rh.get(i+N, 2*N)) % mod
   rev_h = rh_rev.get(N-i, 2*N-i)
   if h == rev_h:
     print(T[:i] + T[i+N:], i)
