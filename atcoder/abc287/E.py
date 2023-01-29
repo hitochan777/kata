@@ -1,10 +1,11 @@
 from typing import Tuple
 
+
 class TrieNode(object):
     """
     Our trie node implementation. Very basic. but does the job
     """
-    
+
     def __init__(self, char: str):
         self.char = char
         self.children = []
@@ -12,7 +13,7 @@ class TrieNode(object):
         self.word_finished = False
         # How many times this character appeared in the addition process
         self.counter = 1
-    
+
 
 def add(root, word: str):
     """
@@ -24,8 +25,6 @@ def add(root, word: str):
         # Search for the character in the children of the present `node`
         for child in node.children:
             if child.char == char:
-                # We found it, increase the counter by 1 to keep track that another
-                # word has it as well
                 child.counter += 1
                 # And point the node to the child that contains this char
                 node = child
@@ -45,15 +44,15 @@ def find_max(root, word: str) -> Tuple[bool, int]:
     node = root
     ans = 0
     for char in word:
-      for child in node.children:
-          if child.char == char:
-              node = child
-              break
+        for child in node.children:
+            if child.char == char:
+                node = child
+                break
 
-      if node.counter == 1:
-          break
+        if node.counter == 1:
+            break
 
-      ans += 1
+        ans += 1
 
     return ans
 
@@ -62,9 +61,9 @@ N = int(input())
 t = TrieNode('*')
 S = []
 for _ in range(N):
-  s = input()
-  add(t, s)
-  S.append(s)
+    s = input()
+    add(t, s)
+    S.append(s)
 
 for s in S:
-  print(find_max(t, s))
+    print(find_max(t, s))
