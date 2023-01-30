@@ -2,7 +2,7 @@ N, K = (int(x) for x in input().split())
 A = [int(x) for x in input().split()]
 
 ng, ok = 0, 10**9+1
-while ok-ng > (10**(-6)):
+while ok-ng > 2*(10**(-6)):
     m = (ok+ng) / 2
     k = sum(a//m for a in A)
     if k <= K:
