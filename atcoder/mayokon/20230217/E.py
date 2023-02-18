@@ -1,20 +1,21 @@
+import sys
 from collections import defaultdict
 from atcoder.fenwicktree import FenwickTree
 
 N, Q = (int(x) for x in input().split())
-C = list(int(x)-1 for x in input().split())
+C = list(int(x)-1 for x in sys.stdin.readline().split())
 ranges = []
 for i in range(Q):
-    l, r = (int(x) for x in input().split())
-    ranges.append((r,l,i))
+    l, r = (int(x) for x in sys.stdin.readline().split())
+    ranges.append((i, l, r))
 
-ranges.sort()
+ranges.sort(key=lambda x: x[2])
 
-ans = []
+ans = [None] * Q
 fw = FenwickTree(N)
 last_index = defaultdict(int)
 i = 0
-for r, l, p in ranges:
+for p, l, r in ranges:
   while i < r:
     if C[i] in last_index:
       fw.add(last_index[C[i]], -1)
@@ -23,9 +24,8 @@ for r, l, p in ranges:
     fw.add(last_index[C[i]], 1)
     i += 1
 
-  ans.append((p, fw.sum(l-1, r)))
+  ans[p] = fw.sum(l-1, r)
 
-ans.sort()
-for _, val in ans:
-   print(val)
+for val in ans:
+   sys.stdout.write(str(val)+"\n")
   
