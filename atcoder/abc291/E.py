@@ -1,4 +1,6 @@
+import sys
 from collections import defaultdict
+sys.setrecursionlimit(10**7)
  
 class Graph:
     def __init__(self,vertices):
@@ -31,8 +33,8 @@ for _ in range(M):
     X, Y = (int(x)-1 for x in input().split())
     g.addEdge(X, Y)
 
-
 seq = g.topologicalSort()
+print(seq)
 if all(seq[i+1] in g.graph[seq[i]] for i in range(N-1)):
     print("Yes")
 else:
