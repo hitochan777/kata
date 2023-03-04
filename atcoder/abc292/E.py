@@ -5,7 +5,7 @@ for i in range(M):
     u, v = (int(x)-1 for x in input().split())
     g[u].add(v)
 
-ans = set()
+ans = defaultdict(list)
 for i in range(N):
   q = [i]
   visited = set()
@@ -22,7 +22,7 @@ for i in range(N):
   reachables.remove(i)
   for node in reachables:
     if node not in g[i]:
-      ans.add((i, node))
+      ans[i].append(node)
 
-print(len(ans))
+print(sum(len(li) for li in ans.values()))
 
