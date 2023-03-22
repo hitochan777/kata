@@ -1,14 +1,17 @@
+import numpy as np
 def mat_pow(A, b, m):
-  R = [[0,0],[0,0]]
-  T = [[1,0],[0,1]]
+  R = np.eye(2,2, dtype=np.int64)
   while b > 0:
     if b & 1 == 1:
-      R = mat_mul(R, T, m)
+      R = np.matmul(R, A) % m
 
-    T = mat_mul(T, T, m)
+    A = np.matmul(A, A) % m
     b >>= 1
 
+  return R
+
 A, X, M = (int(x) for x in input().split())
-B = [[A, 1], [0, 1]]
+B = np.array([[A, 1], [0, 1]], dtype=np.int64)
 P = mat_pow(B, X, M)
+# print(P)
 print(P[0][1])
