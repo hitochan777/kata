@@ -1,17 +1,23 @@
 N, K = (int(x) for x in input().split())
-A = list(int(x) for x in input().split()).sort()
-F = list(int(x) for x in input().split()).sort(reverse=True)
+A = sorted(list(int(x) for x in input().split()))
+F = sorted(list(int(x) for x in input().split()), reverse=True)
 
-def achievable(k):
-    return False
+def achievable(R):
+  total = 0
+  for a, f in zip(A, F):
+    total += max(a - R // f, 0)
+    if total > K:
+       return False
+
+  return True
 
 ng, ok = -1, 10**18
 while ok - ng > 1:
-    k = (ok + ng) // 2
-    if achievable(k):
-        ok = k
+    R = (ok + ng) // 2
+    if achievable(R):
+        ok = R
     else:
-        ng = k
+        ng = R
 
 print(ok)
     
