@@ -18,9 +18,24 @@ for i in range(N):
   acc = [0]
   for i in range(2):
     for score in scores:
-      acc.append(acc[0] + score)
+      acc.append(acc[-1] + score)
 
   accs.append(acc) 
 
+# print(accs)
+ans = -10**18
+for acc in accs:
+  M = (len(acc) - 1) >> 1
+  # print(M)
+  max_val = -10**18
+  arg_max = None
+  for r in range(M+1):
+    for i in range(M):
+      val = acc[i+r] - acc[i]
+      if max_val < val:
+        arg_max = r
+        max_val = val
 
-
+  ans = max(ans, max_val + (acc[M] - acc[0]) * (K - arg_max) // M)
+      
+print(ans)
