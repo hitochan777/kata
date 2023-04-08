@@ -27,12 +27,13 @@ ans = -10**18
 for acc in accs:
   M = (len(acc) - 1) >> 1
   # print(M)
-  for r in range(M+1):
+  for r in range(min(M+1, K+1)):
     for i in range(M):
       val = acc[i+r] - acc[i]
-      if r == 0 and acc[M] - acc[0] < 0:
-        continue
+      if r == 0:
+        if K - r // M == 0 or acc[M] < 0:
+          continue
 
-      ans = max(ans, val + max(0, acc[M] - acc[0]) * (K - r) // M)
+      ans = max(ans, val + max(0, acc[M]) * (K - r) // M)
       
 print(ans)
