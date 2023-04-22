@@ -23,18 +23,19 @@ for i in range(N):
     visited = set()
     q = deque()
     q.appendleft((i, 0))
+    visited.add(i)
     while len(q) > 0:
       n, d = q.pop()
       dist[i][n] = d
       if d <= white_dist[i]:
          whites.add(n)
 
-      visited.add(n)
       for nb in g[n]:
         if nb in visited:
            continue
 
         q.appendleft((nb, d+1))
+        visited.add(n)
 
 
 for p, d in constraints:
