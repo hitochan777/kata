@@ -24,6 +24,7 @@ for i in range(N):
     q = deque()
     q.appendleft((i, 0))
     visited.add(i)
+    dist[i][i] = 0
     while len(q) > 0:
       n, d = q.pop()
       dist[i][n] = d
