@@ -9,16 +9,12 @@ for _ in range(M):
     g[v].add(u)
 
 K = int(input())
-white_dist = defaultdict(lambda: -1)
 constraints = []
 for _ in range(K):
     p, d = (int(x) for x in input().split())
     p -= 1
-    white_dist[p] = d-1
     constraints.append((p, d))
 
-
-whites = set()
 for i in range(N):
     visited = set()
     q = deque()
@@ -28,9 +24,6 @@ for i in range(N):
     while len(q) > 0:
       n, d = q.pop()
       dist[i][n] = d
-      if d <= white_dist[i]:
-         whites.add(n)
-
       for nb in g[n]:
         if nb in visited:
            continue
@@ -38,11 +31,27 @@ for i in range(N):
         q.appendleft((nb, d+1))
         visited.add(nb)
 
+for i in range(1<<N):
+  whites = set()
+  for j in range(N):
+    if (i >> j) & 1 == 1:
+      whites.add(j)
 
-for p, d in constraints:
-  if all(n in whites for n, d2 in dist[p].items() if d2 == d):
-     print("No")
-     exit()
+  for p, d in constraints:
+    min_dist = 10**18
 
-print("Yes")
-print("".join(["0" if i in whites else "1" for i in range(N)]))
+    for j in range(N):
+      if j not in whites:
+
+        min_dist = min(dist[p][j], min_dist)
+        if i == 5:
+          print(p, j, min_dist)
+
+    if min_dist != d:
+      break
+  else:
+    print("Yes")
+    print("".join(["0" if i in whites else "1" for i in range(N)]))
+    exit()
+
+print("No")
