@@ -22,12 +22,4 @@ while q:
     elif g[nx][ny] == "#":
       q.append((x, y, 0, 0))
 
-print(len(q))
-
-
-
-
-        
-
-
-
+print(len(visited))
