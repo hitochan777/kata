@@ -14,7 +14,7 @@ while q:
     for dx2, dy2 in dirs:
       nx, ny = x + dx2, y + dy2
       if g[nx][ny] == "." and (nx, ny) not in visited:
-        q.append((nx, ny, dx, dy))
+        q.append((nx, ny, dx2, dy2))
   else:
     nx, ny = x + dx, y + dy
     if g[nx][ny] == "." and (nx, ny) not in visited:
