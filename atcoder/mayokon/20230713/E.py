@@ -158,7 +158,7 @@ ans = 0
 MOD = 998244353
 for i, a in enumerate(A):
   cnt = i - ss.index(a)
-  # print(cnt)
+  # print(cnt, (pow(2, cnt, MOD) + MOD - 1) % MOD)
   ans += pow(2, cnt, MOD) + MOD - 1
   ans %= MOD
   ss.add(a)
