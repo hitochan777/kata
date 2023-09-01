@@ -9,7 +9,7 @@ for _ in range(N):
     p, e = (int(x) for x in input().split())
     a.append((p, e))
     if max_val[p][0] == e:
-      max_val[p] = (max_val[p][0], max_val[p][1] + 1)
+      max_val[p] = (e, max_val[p][1] + 1)
     elif max_val[p][0] < e:
       max_val[p] = (e, 1)
     
@@ -18,7 +18,8 @@ for _ in range(N):
 ans = 1
 for a in A:
   for p, e in a:
-    if max_val[p][0] == p and max_val[p][1] == 1:
+    if max_val[p][0] == e and max_val[p][1] == 1:
       ans += 1
+      break
 
-print(ans)
+print(min(ans, N))
