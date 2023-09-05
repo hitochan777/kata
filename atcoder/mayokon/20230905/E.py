@@ -24,6 +24,3 @@ while q:
 
       visited.add(tuple(new_vals))
       heapq.heappush(q, (-(A[new_vals[0]] + B[new_vals[1]] + C[new_vals[2]]), tuple(new_vals)))
-
-
-  
