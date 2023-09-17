@@ -1,3 +1,5 @@
+from itertools import permutations
+
 M = int(input())
 S = []
 for _ in range(3):
@@ -11,19 +13,20 @@ for i in range(10):
   if any(c not in s for s in S):
     continue
 
-  used = set()
-  for s in S:
-    start = 0
-    while True:
-      index = s.find(c, start)
-      assert index >= 0
-      if index not in used:
-        used.add(index)
-        break
+  for sp in permutations(S):
+    used = set()
+    for s in sp:
+      start = 0
+      while True:
+        index = s.find(c, start)
+        assert index >= 0
+        if index not in used:
+          used.add(index)
+          break
 
-      start = index+1
+        start = index+1
 
-  ans = min(ans, max(used))
+    ans = min(ans, max(used))
 
 if ans == INF:
   print(-1)
