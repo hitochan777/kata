@@ -1,15 +1,17 @@
 Q, K = (int(x) for x in input().split())
-def make_array(*args):
-  if len(args) == 0:
-    return 0
-
-  return [make_array(*args[1:]) for _ in range(args[0])]
-
-dp = make_array(Q+1, K+1)
-for _ in range(Q):
-  q, n = input().split()
-  n = int(n)
-  if q == "+":
-    pass
+dp = [0] * (K+1)
+dp[0] = 1
+MOD = 998244353 
+for q in range(Q):
+  sign, n = input().split()
+  x = int(n)
+  if sign == "+":
+    for i in range(K,x-1,-1):
+      dp[i] += dp[i-x]
+      dp[i] %= MOD
   else:
-    pass
+    for i in range(x, K+1):
+      dp[i] -= dp[i-x]
+      dp[i] %= MOD
+
+  print(dp[K])
