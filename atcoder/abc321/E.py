@@ -7,7 +7,9 @@ def get_depth(node):
   return depth
 
 def get_num_desc(node, d, N):
-  return min((node+1)*(1<<d), N) - node*(1<<d)
+  val = min((node+1)*(1<<d), N) - min(node*(1<<d), N)
+  # print("val", val)
+  return val
 
 def solve(N, X, K):
   node = X
@@ -17,7 +19,14 @@ def solve(N, X, K):
     if K - dist_to_lca - 1 < 0:
       break
 
-    cnt += get_num_desc(node, K-dist_to_lca, N) - get_num_desc(node*2,K-dist_to_lca-1,N)
+    diff = get_num_desc(node, K-dist_to_lca, N)
+    if dist_to_lca > 0:
+      is_left = (node * 2 + 1) * (1<<(dist_to_lca-1)) < X
+      diff -= get_num_desc(node*2+(0 if is_left else 1),K-dist_to_lca-1,N)
+
+    # print("diff:", diff)
+
+    cnt += diff
     dist_to_lca += 1
     node >>= 1
 
