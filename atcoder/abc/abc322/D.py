@@ -1,3 +1,4 @@
+LEN = 7
 def rotate90(grid):
   new_grid = []
   for i in range(0, len(grid)):
@@ -29,7 +30,7 @@ def has_4x4_a(matrix):
     num_cols = len(matrix[0])
 
     # Iterate through the input matrix
-    for i in range(num_rows - 3):  # Loop through rows
+    for i in range(3,  j):  # Loop through rows
         for j in range(num_cols - 3):  # Loop through columns
             # Check if the 4x4 submatrix starting at (i, j) is all "a"
             if all(matrix[row][col] == '#' for row in range(i, i + 4) for col in range(j, j + 4)):
@@ -40,12 +41,12 @@ def has_4x4_a(matrix):
 
 def overlap(g1, g2):
   li = [["." for _ in range(8)] for _ in range(8)]
-  for i in range(8):
-    for j in range(8):
+  for i in range(LEN):
+    for j in range(LEN):
       li[i][j] = g1[i][j]
 
-  for i in range(8):
-    for j in range(8):
+  for i in range(LEN):
+    for j in range(LEN):
       if li[i][j] != "." and g2[i][j] != ".":
         return (False, None)
 
@@ -74,8 +75,6 @@ for p1 in g1:
       if not ok:
         continue
 
-
-      print("yeaw")
       if has_4x4_a(grid3):
          print("Yes")
          exit()
