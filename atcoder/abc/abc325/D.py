@@ -18,18 +18,19 @@ while True:
     t = products[cur][0]
 
   while cur < N and products[cur][0] == t:
-    heapq.heappush(pq, -products[cur][1])
+    heapq.heappush(pq, products[cur][1])
     cur += 1
 
   while pq:
-    val = -heapq.heappop(pq)
+    val = heapq.heappop(pq)
     if val >= t:
-      heapq.heappush(pq, -val)
+      heapq.heappush(pq, val)
       break
 
   if pq:
     heapq.heappop(pq)
     ans += 1
+    t += 1
 
 print(ans)
 
