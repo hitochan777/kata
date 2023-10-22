@@ -1,54 +1,35 @@
+import heapq
 N = int(input())
-maxT = 0
 products = []
 for i in range(N):
   T, D = (int(x) for x in input().split())
   products.append((T, T+D))
-  maxT = max(maxT, T+D)
 
 products.sort()
-cur = 0
 ans = 0
 t = 0
-while cur < N and t < maxT+1:
-  while cur < N:
-    start, end = products[cur]
-    t = max(start, t)
-    if start <= t <= end:
-      ans += 1
-      cur += 1
+cur = 0
+pq = []
+while True:
+  if len(pq) == 0:
+    if cur >= N:
       break
-    elif end < t:
-      cur += 1
-    else:
-      t += 1
 
-  t += 1
+    t = products[cur][0]
 
+  while cur < N and products[cur][0] == t:
+    heapq.heappush(pq, -products[cur][1])
+    cur += 1
 
-# 10
-# 4 1
-# 1 2
-# 1 4
-# 3 2
-# 5 1
-# 5 1
-# 4 1
-# 2 1
-# 4 1
-# 2 4
+  while pq:
+    val = -heapq.heappop(pq)
+    if val >= t:
+      heapq.heappush(pq, -val)
+      break
 
-
-# ---**-
-# # ***---
-# *****-
-# --***-
-# ----**
-# ----**
-# ---**-
-# -**---
-# ---**-
-# -*****
+  if pq:
+    heapq.heappop(pq)
+    ans += 1
 
 print(ans)
 
