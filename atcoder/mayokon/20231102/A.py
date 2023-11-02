@@ -4,5 +4,5 @@ for _ in range(H):
   row = "*" + input() + "*"
   ans.append(row)
 
-ans.append(["*" * (W+2)])
+ans.append("*" * (W+2))
 print("\n".join(ans))
