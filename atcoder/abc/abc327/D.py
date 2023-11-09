@@ -11,16 +11,20 @@ for a, b in zip(A, B):
 
 def is_bipartile(g, N):
   color = [0 for i in range(N+1)]
-  color[1] = 1
-  q = deque([1])
-  while len(q):
-    p = q.popleft()
-    for nb in list(g[p]):
-      if color[nb] == 0:
-        color[nb] = -color[p]
-        q.append(nb)
-      elif color[nb] == color[p]:
-        return False
+  for i in range(1, N+1):
+    if color[i] != 0:
+      continue
+
+    color[i] = 1
+    q = deque([i])
+    while len(q):
+      p = q.popleft()
+      for nb in list(g[p]):
+        if color[nb] == 0:
+          color[nb] = -color[p]
+          q.append(nb)
+        elif color[nb] == color[p]:
+          return False
 
   return True
 
