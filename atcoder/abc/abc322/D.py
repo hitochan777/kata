@@ -59,25 +59,31 @@ for i in range(3):
   for j in range(4):
     P[i].append(list(input()))
 
-g1 = enum_placement(P[0])
-g2 = enum_placement(P[1])
-g3 = enum_placement(P[2])
+# g2 = enum_placement(P[1])
+# g3 = enum_placement(P[2])
 
-for p1 in g1:
-  grid = p1
-  for p2 in g2:
-    ok, grid2 = overlap(grid, p2)
+p1 = P[0]
+p2 = P[1]
+p3 = P[2]
+
+for _ in range(4):
+  p2 = rotate90(p2)
+  for _ in range(4):
+    m = [[False] * 7 for _ in range(7)]
+    dfs(m, P)
+    p3 = rotate90(p3)
+
+  ok, grid2 = overlap(grid, p2)
+  if not ok:
+    continue
+
+  for p3 in g3:
+    ok, grid3 = overlap(grid2, p3)
     if not ok:
-       continue
+      continue
 
-    for p3 in g3:
-      ok, grid3 = overlap(grid2, p3)
-      if not ok:
-        continue
-
-      if has_4x4_a(grid3):
-         print("Yes")
-         exit()
-
+    if has_4x4_a(grid3):
+      print("Yes")
+      exit()
 
 print("No")
